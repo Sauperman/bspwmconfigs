@@ -55,7 +55,3 @@ systemctl --user enable --now pipewire pipewire-pulse wireplumber
 ######################
 #    SCREENSHOT      #
 #====================#
-## Screenshot
-![Uploading 2025-08-19-01-24-35.png…]()
-
-
