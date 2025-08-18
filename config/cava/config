@@ -1,0 +1,19 @@
+[color]
+gradient = 1
+gradient_count = 3
+gradient_color_1 = '#0a3439'  # Dark teal
+gradient_color_2 = '#1a6d6f'  # Medium teal
+gradient_color_3 = '#5fc2c7'  # Bright teal
+
+[input]
+method = pulse
+source = auto
+
+[output]
+method = ncurses
+framerate = 60
+autosens = 1
+
+[smoothing]
+integral = 70
+gravity = 85

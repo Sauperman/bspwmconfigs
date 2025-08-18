@@ -1,0 +1,135 @@
+# ======================
+# TERMINAL & APPS
+# ======================
+super + t
+    xterm
+
+super + alt + t
+    konsole
+
+super + d
+    dmenu_run
+
+super + r
+    rofi -show drun
+
+super + e
+    dolphin
+
+super + n
+    wlogout
+
+super + z
+    feh --bg-fill --randomize ~/.config/wallpaper/*
+
+# ========================
+# WINDOW MANAGEMENT
+# ========================
+
+# Toggle Float/Tile
+super + space
+    bspc node -t ~floating
+
+# Fullscreen
+super + f
+    bspc node -t fullscreen
+
+# ========================
+# FLOATING WINDOW MOVEMENT (ARROWS)
+# ========================
+
+# Move Floating Windows (20px)
+super + shift + {Left,Down,Up,Right}
+    if [ $(bspc query -N -n focused.floating) ]; then
+        bspc node -v {-20 0,0 20,0 -20,20 0}
+    fi
+
+# Precise Movement (5px)
+super + ctrl + shift + {Left,Down,Up,Right}
+    if [ $(bspc query -N -n focused.floating) ]; then
+        bspc node -v {-5 0,0 5,0 -5,5 0}
+    fi
+
+# Snap to Edges
+super + alt + {Left,Down,Up,Right}
+    if [ $(bspc query -N -n focused.floating) ]; then
+        bspc node -v {-1000 0,0 1000,0 -1000,1000 0}
+    fi
+
+# ========================
+# WORKSPACE CONTROLS
+# ========================
+
+# Switch Workspaces
+super + {1-9}
+    bspc desktop -f {1-9}
+
+# Move Windows to Workspaces
+super + shift + {1-9}
+    bspc node -d {1-9}
+
+
+# ======================
+# WM CONTROL
+# ======================
+
+# Reload sxhkd
+super + Escape
+    pkill -USR1 -x sxhkd
+
+# Restart/reload bspwm
+super + alt + Escape
+    bspc wm -r
+
+# Close (c) or kill (k) window
+super + q
+    bspc node -c
+	bspc node -k
+
+# Toggle layout (tiled/monocle)
+super + m
+    bspc desktop -l next
+
+# Toggle floating
+super + shift + space
+    bspc node -t ~floating
+
+# Fullscreen
+super + f
+    bspc node -t fullscreen
+
+
+# ======================
+# UTILITY KEYS
+# ======================
+# Screenshot (Print)
+Print
+    scrot ~/Pictures/%Y-%m-%d-%H-%M-%S.png
+
+# Volume (pamixer)
+F1
+    pamixer --toggle-mute
+F2
+    pamixer --decrease 5
+F3
+    pamixer --increase 5
+
+# Brightness (brightnessctl)
+F11
+    brightnessctl set 5%-
+F12
+    brightnessctl set +5%
+
+# ======================
+# NODE STATES (flags)
+# ======================
+super + ctrl + {m,x,y,z}
+    bspc node -g {marked,locked,sticky,private}
+
+# Swap with biggest window
+super + g
+    bspc node -s biggest.window
+
+# Send marked node to preselected
+super + y
+    bspc node newest.marked.local -n newest.!automatic.local
