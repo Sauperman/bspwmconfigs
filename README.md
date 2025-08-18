@@ -50,6 +50,7 @@ sudo pacman -S pipewire pipewire-pulse pipewire-alsa wireplumber
 systemctl --user enable --now pipewire pipewire-pulse wireplumber
 
 ######-AFTER START UP ON AFK IT USES AROUND 345 MB to 312 MB RAM/MEMORY-############
+# REMOVE # FROM #.Xresources #.bashrc
 
 
 # SCREENSHOT
