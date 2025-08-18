@@ -51,3 +51,11 @@ pacman -S chromium git steam gamemode mangohud wine-staging gamemode gamescope
 #pipewire audio
 sudo pacman -S pipewire pipewire-pulse pipewire-alsa wireplumber
 systemctl --user enable --now pipewire pipewire-pulse wireplumber
+
+######################
+#    SCREENSHOT      #
+#====================#
+## Screenshot
+![Uploading 2025-08-19-01-24-35.png…]()
+
+
