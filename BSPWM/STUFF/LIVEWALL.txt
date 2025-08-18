@@ -1,0 +1,9 @@
+#download yay -S xwinwrap-git
+
+
+
+#gif
+xwinwrap -g 1920x1080 -ni -un -ov -fs -- mpv --loop --no-audio --wid=%WID% ~/.config/hypr/wall.gif &
+
+#video
+xwinwrap -g 1920x1080 -ni -un -ov -fs -- mpv --hwdec=auto --loop --no-audio --wid=%WID% ~/Downloads/wall.mp4 &

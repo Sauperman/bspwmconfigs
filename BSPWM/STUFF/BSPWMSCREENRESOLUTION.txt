@@ -1,0 +1,19 @@
+#stretch screen resolution
+xrandr --output eDP-1 --set "scaling mode" "Full"
+
+#setresolution
+xrandr --output eDP-1 --mode 1920x1080 --rate 60
+
+#format
+xrandr --output <DISPLAY> --mode <WIDTHxHEIGHT> --rate <REFRESH_RATE>
+
+#scale
+xrandr --output eDP-1 --scale 1.5x1.5
+
+#format
+xrandr --output <DISPLAY> --scale <SCALE_FACTOR>
+
+#like intelgfxcmdcenter
+xrandr --output eDP-1 --mode 1024x768 --scale-from 1024x768
+
+#run this in terminal give temporary effect or permanent copy and paste this command on .config/bspwm/bspwmrc

@@ -1,0 +1,47 @@
+#update-repo
+.
+sudo pacman -Syu
+yay -Syu
+
+#clear-cache
+.
+sudo pacman -Scc
+sudo pacman -Sc
+yay -Scc
+yay -Sc
+
+#check-orphanedpkg
+.
+pacman -Qdtq | sudo pacman -Rns -
+
+#cleanpkgcache
+.
+sudo paccache -rk2
+
+#verifypkgintigriti
+.
+sudo pacman -Qkk     # Check for corrupted files
+
+#journal-logs
+.
+journalctl -p 3 -xb   # View critical errors
+
+##############################################################################
+
+#Take snapshots before updates:
+.
+sudo timeshift --create --comments "Pre-update snapshot"
+
+#Btrfs users: Use snapper or manual snapshots:
+.
+sudo btrfs subvolume snapshot / /snapshots/$(date +%Y-%m-%d)
+
+6. Handle Conflicting Configs
+
+.pacnew and .pacsave files appear after updates. Merge them:
+.
+sudo pacdiff
+
+#Locate pending merges:
+.
+find /etc -name "*.pacnew" -o -name "*.pacsave"
