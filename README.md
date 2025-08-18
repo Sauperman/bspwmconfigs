@@ -1,7 +1,6 @@
 # ARCH-LINUX-BSPWM-MINIMAL-DESKTOP
-#==============#
-# DEPENDENCIES #
-#==============#
+
+# DEPENDENCIES 
 .
 sudo pacman -S bspwm sxhkd polybar xterm picom rofi kitty scrot nm-connection-editor brightnessctl pamixer ffmpeg xorg-server xorg-xinit xorg-xrandr xf86-video-intel xorg-server xorg-apps xorg-xinit xorg-xkill xorg-xset xorg-xrandr xorg-xrdb xorg-xprop libqalculate intel-gpu-tools ffmpeg mpv xf86-video-fbdev xorg-xbacklight dmenu
 
@@ -16,9 +15,8 @@ makepkg -si --noconfirm
 yay -S wlogout nm-applet ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono xwinwrap-git
 .
 
-#==============#
-#     AFTER    #
-#==============#
+
+# AFTER
 
 sudo chmod +x .config/bspwm/bspwmrc
 sudo chmod +x .config/sxhkd/sxhkdrc
@@ -32,9 +30,8 @@ nmtui, nm-connection-editor on polybar
 Keybinds are in .config/sxhkd/sxhkdrc
 
 and copy the .Xresources and .Bashrc into /home
-#=====================#
-# EXTRA               #
-#=====================#
+
+# EXTRA
 
 #gaming
 #user linux-zen kernel or linux-xanmod
@@ -54,8 +51,8 @@ systemctl --user enable --now pipewire pipewire-pulse wireplumber
 
 ######-AFTER START UP ON AFK IT USES AROUND 345 MB to 312 MB RAM/MEMORY-############
 
-######################
-#    SCREENSHOT      #
-#====================#
+
+# SCREENSHOT
+
 
 ![Description of the screenshot](screenshot.png)
