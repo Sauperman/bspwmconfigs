@@ -12,7 +12,7 @@ makepkg -si --noconfirm
 
 #YAY dependencies
 .
-yay -S wlogout nm-applet ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono xwinwrap-git
+yay -S wlogout nm-applet ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono xwinwrap-git mpvpaper
 .
 
 
