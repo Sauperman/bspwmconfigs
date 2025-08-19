@@ -6,4 +6,21 @@
 xwinwrap -g 1920x1080 -ni -un -ov -fs -- mpv --loop --no-audio --wid=%WID% ~/.config/hypr/wall.gif &
 
 #video
-xwinwrap -g 1920x1080 -ni -un -ov -fs -- mpv --hwdec=auto --loop --no-audio --wid=%WID% ~/Downloads/wall.mp4 &
+
+xwinwrap -fs -nf -ov -- mpv -wid WID --loop --no-audio --no-osc --no-osd-bar Videos/LIVEWALLPAPER/wall.mp4
+
+xwinwrap -g 1920x1080+0+0 -ni -s -st -sp -b -nf -ov -- mpv -wid WID --loop --no-audio --hwdec=no --vo=x11 --framedrop=vo --no-border --ontop --no-keepaspect ~/Videos/LIVEWALLPAPER/wall.mp4
+
+#BEST OF ALL CMD
+xwinwrap -g 1920x1080+0+0 -ni -s -st -sp -b -nf -ov -- mpv -wid WID --loop --no-audio --hwdec=auto --vo=gpu --scale=bilinear --cscale=bilinear --dscale=bilinear --framedrop=vo --video-latency-hacks=yes --no-border --ontop ~/Videos/LIVEWALLPAPER/wall.mp4
+
+killall xwinwrap mpv 2>/dev/null
+
+#================#
+# BEST OPTION    #
+#================#
+
+# Try mplayer with xwinwrap
+xwinwrap -g 1920x1080+0+0 -ni -s -st -sp -b -nf -ov -- mplayer -quiet -loop 0 -nosound -framedrop -vo xv -wid WID ~/Videos/LIVEWALLPAPER/wall.mp4
+
+xwinwrap -g 1920x1080+0+0 -ni -s -st -sp -b -nf -ov -- mplayer -quiet -loop 0 -nosound -framedrop -vo xv -wid WID ~/Videos/LIVEWALLPAPER/wall.mp4
