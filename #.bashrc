@@ -1,13 +1,11 @@
-# Custom Color Definitions (ANSI Escape Codes)
-TEA_GREEN='\[\e[38;5;156m\]'    # Soft tea green
-COFFEE_WOOD='\[\e[38;5;130m\]'  # Warm coffee brown
-BRIGHT_ACCENT='\[\e[38;5;214m\]' # Bright orange/yellow
-SOFT_CONTRAST='\[\e[38;5;189m\]' # Light lavender
+BRIGHT_TEAL='\[\033[38;5;36m\]'
+COFFEE_BROWN='\[\033[38;5;94m\]'
+CREAM='\[\033[38;5;187m\]'
+ACCENT_COLOR='\[\033[38;5;75m\]'
+RESET_COLOR='\[\033[0m\]'
 
-# Git Branch Function (Optional)
 parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ ( \1)/'
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/  \1/'
 }
 
-# Set PS1 with 4-Color Scheme
-PS1="${LATTE}╭──($ ${WHISKERS}\u${LATTE})${MOCHA}@[${LAVENDER}\h${MOCHA}]──[${WHISKERS}\w${MOCHA}]\n${LATTE}╰─${LAVENDER}$ "
+export PS1="\n${COFFEE_BROWN}╭─${CREAM}[\A]${RESET_COLOR}\n${COFFEE_BROWN}╰─${BRIGHT_TEAL}[\u@\h] ${COFFEE_BROWN}[${ACCENT_COLOR}🐧 ${BRIGHT_TEAL}\w${COFFEE_BROWN}]${CREAM}\$(parse_git_branch)${RESET_COLOR}\n${COFFEE_BROWN}➜ ${RESET_COLOR}"
