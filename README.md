@@ -56,4 +56,4 @@ systemctl --user enable --now pipewire pipewire-pulse wireplumber
 # SCREENSHOT
 
 
-![Description of the screenshot](screenshot.png)
+![Description of the screenshot](srcshot.png)
