@@ -5,6 +5,7 @@ USER_COLOR='\[\033[38;5;114m\]'      # Soft green for username
 HOST_COLOR='\[\033[38;5;180m\]'      # Warm tan for hostname
 TIME_COLOR='\[\033[38;5;183m\]'      # Lavender for time
 DIR_COLOR='\[\033[38;5;223m\]'       # Cream for directory
+TEAL_COLOR='\[\033[38;5;30m\]'       # Dark teal for </> text and brackets
 CPU_COLOR='\[\033[38;5;117m\]'       # Light blue for CPU
 RAM_COLOR='\[\033[38;5;218m\]'       # Pink for RAM
 GIT_COLOR='\[\033[38;5;219m\]'       # Light purple for git
@@ -78,14 +79,14 @@ system_info() {
     [ "$ram" -gt 70 ] && ram_color='\[\033[38;5;221m\]'  # Yellow for high usage
     [ "$ram" -gt 90 ] && ram_color='\[\033[38;5;203m\]'  # Red for very high usage
 
-    echo -e "${ACCENT_COLOR}[${cpu_color}🧠 CPU:${cpu}%${ACCENT_COLOR}|${ram_color}💾 RAM:${ram}%${ACCENT_COLOR}]${RESET}"
+    echo -e "${cpu_color}🧠 CPU:${cpu}%${ACCENT_COLOR}|${ram_color}💾 RAM:${ram}%${RESET}"
 }
 
 # Git branch info
 git_branch() {
     local branch=$(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
     if [ -n "$branch" ]; then
-        echo -e "${ACCENT_COLOR} ${GIT_COLOR}🌿 ${branch}${RESET}"
+        echo -e "${GIT_COLOR}🌿 ${branch}${RESET}"
     fi
 }
 
@@ -95,8 +96,8 @@ set_bash_prompt() {
     local exit_color=$SUCCESS_COLOR
     [ $exit_code -ne 0 ] && exit_color=$ERROR_COLOR
 
-    PS1="${ACCENT_COLOR}╭─${RESET} ${USER_COLOR}👤 \u${RESET}${ACCENT_COLOR}@${HOST_COLOR}🐧 \h${RESET} ${ACCENT_COLOR}∙${RESET} ${TIME_COLOR}🕒 \t${RESET} ${ACCENT_COLOR}∙${RESET} $(system_info)"
-    PS1+="\n${ACCENT_COLOR}╰─${RESET} ${DIR_COLOR}📁 \w${RESET}\$(git_branch)"
+    PS1="${ACCENT_COLOR}╭─${RESET} ${USER_COLOR}\u${RESET}${ACCENT_COLOR}@${HOST_COLOR}🐧 \h${RESET} ${ACCENT_COLOR}∙${RESET} ${TIME_COLOR}🕒 \t${RESET} ${ACCENT_COLOR}∙${RESET} ${TEAL_COLOR}</>${RESET}"
+    PS1+="\n${ACCENT_COLOR}╰─${RESET}${TEAL_COLOR}[${RESET} ${DIR_COLOR}📁 \w${RESET} ${TEAL_COLOR}]${RESET} \$(git_branch)"
     PS1+="\n${exit_color}➜ ${RESET}"
 }
 
