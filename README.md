@@ -57,3 +57,19 @@ systemctl --user enable --now pipewire pipewire-pulse wireplumber
 
 
 ![Description of the screenshot](review.png)
+# MOCHA-THEME
+
+![Description of the screenshot](mocha.png)
+
+# LATTE-THEME
+
+![Description of the screenshot](latte.png)
+
+# GRUVBOX-THEME
+
+![Description of the screenshot](gruvbox.png)
+![Description of the screenshot](gruvbox1.png)
+![Description of the screenshot](gruvbox2.png)
+
+
+
