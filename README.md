@@ -71,5 +71,9 @@ systemctl --user enable --now pipewire pipewire-pulse wireplumber
 ![Description of the screenshot](gruvbox1.png)
 ![Description of the screenshot](gruvbox2.png)
 
+# LATTE-THEME
+
+![Description of the screenshot](green.png)
+
 
 
