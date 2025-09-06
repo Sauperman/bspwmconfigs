@@ -1,0 +1,127 @@
+* {
+all: unset;
+font-family: "Source Code Pro", "JetBrainsMono Nerd Font", monospace;
+font-size: 12px;  /* Even smaller font */
+}
+
+.bar {
+  background-color: rgba(30, 30, 30, 0.50);
+  border-radius: 0 10px 10px 0;
+  padding: 5px;  /* Minimal padding */
+  color: white;
+}
+
+.workspaces {
+  margin: 0px 0;
+}
+
+.workspace-btn {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  padding: 1px 2px;  /* Tiny padding */
+  margin: 1px 0;
+  min-width: 20px;    /* Very compact */
+  min-height: 18px;   /* Very compact */
+}
+
+.workspace-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Arch Linux logo button styles */
+.arch-btn {
+  background-color: rgba(23, 147, 209, 0.3); /* Arch blue with transparency */
+  border-radius: 4px;
+  padding: 0px;
+  margin: 0px 0;
+  min-width: 30px;    /* Very compact */
+  min-height: 10px;   /* Very compact */
+  font-size: 10px;    /* Small icon */
+}
+
+.arch-btn:hover {
+  background-color: rgba(23, 147, 209, 0.5); /* Brighter Arch blue on hover */
+}
+
+.arch-text {
+  color: #1793d1; /* Arch blue color */
+}
+
+/* WiFi button styles */
+.wifi-btn {
+  background-color: rgba(255, 184, 97, 0.3);
+  border-radius: 4px;
+  padding: 2px;
+  margin: 1px 0;
+  min-width: 20px;    /* Very compact */
+  min-height: 18px;   /* Very compact */
+  font-size: 10px;    /* Small icon */
+}
+
+.wifi-btn:hover {
+  background-color: rgba(255, 174, 77, 0.5);
+}
+
+.wifi-text {
+  color: #ffddb3;
+}
+
+/* Htop button styles */
+.htop-btn {
+  background-color: rgba(140, 200, 100, 0.3);
+  border-radius: 4px;
+  padding: 2px;
+  margin: 1px 0;
+  min-width: 20px;    /* Very compact */
+  min-height: 18px;   /* Very compact */
+  font-size: 10px;    /* Small icon */
+}
+
+.htop-btn:hover {
+  background-color: rgba(140, 200, 100, 0.5);
+}
+
+.htop-text {
+  color: #a3be8c;
+}
+
+.power-btn {
+  background-color: rgba(255, 100, 100, 0.3);
+  border-radius: 4px;
+  padding: 2px;
+  margin: 1px 0;
+  min-width: 20px;    /* Very compact */
+  min-height: 18px;   /* Very compact */
+  font-size: 10px;    /* Small power icon */
+}
+
+.power-btn:hover {
+  background-color: rgba(255, 100, 100, 0.5);
+}
+
+/* Style for new modules you'll add */
+.module-btn {
+  background-color: rgba(100, 100, 255, 0.2);
+  border-radius: 3px;
+  padding: 1px 2px;
+  margin: 1px 0;
+  min-width: 20px;
+  min-height: 18px;
+  font-size: 9px;
+}
+
+.module-btn:hover {
+  background-color: rgba(100, 100, 255, 0.3);
+}
+
+.spacer {
+  min-height: 100px;  /* Very small spacer */
+}
+
+.modules-container {
+  margin: 2px 0;
+}
+
+.bottom-container {
+  margin: 2px 0;
+}

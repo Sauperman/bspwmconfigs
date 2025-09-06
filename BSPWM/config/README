@@ -1,0 +1,11 @@
+#THIS BAR IS NOT MORE RESPONSIVE IF YOU WANT #TO USE THIS IS GOOD FOR PC DESKTOP
+
+#Dependencies
+
+#are same as the main tree README #Dependencies
+
+#FOR DOWNLOAD EWWBAR Use yay -S ewwbar or eww
+
+#in eww.yuck you can add modules and adjust panel and eww.scss you can style modules using css
+
+also launch script youcan launch and stop you can completly stop ewwbar and in eww.yuck change the monitor eDP-1 to your own monitor
