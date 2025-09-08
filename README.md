@@ -62,7 +62,7 @@ systemctl --user enable --now pipewire pipewire-pulse wireplumber
 
 
 ![](mocha1.png)
-![Description of the screenshot](mocha2.png)
+![Description of the screenshot](mo.jpg)
 
 # LATTE-THEME
 
