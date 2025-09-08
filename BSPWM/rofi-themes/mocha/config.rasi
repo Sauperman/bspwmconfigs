@@ -1,218 +1,174 @@
 configuration {
-
 	modi: "drun,calc:qalc,window,run";
-	width: 25;
+	width: 24;
 	show-icons: true;
-	icon-theme: "Breeze";
-	lines: 8;
-	columns: 2;
+	icon-theme: "candy";
+	lines: 10;
 	fixed-num-lines: true;
-	padding: 12;
+	padding: 5;
 	sidebar-mode: true;
-
-}
-
-listview {
-    lines: 8;
+    font: "FiraCode Nerd Font 10";
     columns: 2;
-    fixed-height: true;
 }
-/*******************************************************************************
- * ROFI Color theme - Catppuccin Mocha
- *******************************************************************************/
 
 * {
-    /* Catppuccin Mocha color palette */
-    base:           rgba ( 24, 24, 37, 100 % );    /* base */
-    mantle:         rgba ( 20, 20, 32, 100 % );    /* mantle */
-    crust:          rgba ( 17, 17, 27, 100 % );    /* crust */
+    // Catppuccin Mocha colors
+    bg: #1e1e2e;          // Base (dark blueish)
+    bg-alt: #313244;      // Surface0 (lighter blue-grey)
+    fg: #cdd6f4;          // Text (soft white)
+    fg-alt: #a6adc8;      // Subtext0 (light grey)
 
-    text:           rgba ( 205, 214, 244, 100 % ); /* text */
-    subtext0:       rgba ( 166, 173, 200, 100 % ); /* subtext0 */
-    subtext1:       rgba ( 186, 194, 222, 100 % ); /* subtext1 */
+    // UI colors - Catppuccin Mocha accents
+    accent: #cba6f7;      // Mauve (purple accent)
+    urgent: #f38ba8;      // Red (for urgent)
+    active: #89b4fa;      // Blue (for active)
 
-    /* Catppuccin Mocha accent colors */
-    rosewater:      rgba ( 245, 224, 220, 100 % ); /* rosewater */
-    flamingo:       rgba ( 242, 205, 205, 100 % ); /* flamingo */
-    pink:           rgba ( 245, 194, 231, 100 % ); /* pink */
-    mauve:          rgba ( 203, 166, 247, 100 % ); /* mauve */
-    red:            rgba ( 243, 139, 168, 100 % ); /* red */
-    maroon:         rgba ( 235, 160, 172, 100 % ); /* maroon */
-    peach:          rgba ( 250, 179, 135, 100 % ); /* peach */
-    yellow:         rgba ( 249, 226, 175, 100 % ); /* yellow */
-    green:          rgba ( 166, 227, 161, 100 % ); /* green */
-    teal:           rgba ( 148, 226, 213, 100 % ); /* teal */
-    sky:            rgba ( 137, 220, 235, 100 % ); /* sky */
-    sapphire:       rgba ( 116, 199, 236, 100 % ); /* sapphire */
-    blue:           rgba ( 137, 180, 250, 100 % ); /* blue */
-    lavender:       rgba ( 180, 190, 254, 100 % ); /* lavender */
-
-    /* Theme assignments */
-    selected-normal-foreground:  @text;
-    foreground:                  @subtext0;
-    normal-foreground:           @subtext0;
-    alternate-normal-background: @mantle;
-
-    selected-urgent-foreground:  @red;
-    urgent-foreground:           @red;
-    alternate-urgent-background: @mantle;
-
-    active-foreground:           @teal;
-    selected-active-foreground:  @teal;
-    alternate-active-background: @mantle;
-
-    background:                  @base;
-    bordercolor:                 @mantle;
-    alternate-normal-foreground: @subtext0;
-    normal-background:           @base;
-
-    selected-normal-background:  @mantle;
-    border-color:                @subtext0;
-    spacing:                     2;
-    separatorcolor:              @mantle;
-
-    urgent-background:           @mantle;
-    selected-urgent-background:  @crust;
-    alternate-urgent-foreground: @red;
-
-    background-color:            rgba ( 0, 0, 0, 0 % );
-    alternate-active-foreground: @teal;
-    active-background:           @mantle;
-    selected-active-background:  @crust;
+    background-color: transparent;
+    border-color: #45475a; // Surface1
+    separatorcolor: #585b70; // Surface2
+    spacing: 1;
 }
 
 window {
-    background-color: @background;
-    border:           1;
-    border-color:     @mantle;
-    padding:          5;
+    background-color: @bg;
+    border: 1;
+    border-color: @border-color;
+    border-radius: 4;
+    padding: 5;
+    // True center positioning
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
 }
 
 mainbox {
-    border:  0;
-    padding: 0;
-}
-
-message {
-    border:       1px dash 0px 0px ;
-    border-color: @separatorcolor;
-    padding:      1px ;
-}
-
-textbox {
-    text-color: @foreground;
-}
-
-listview {
-    fixed-height: 0;
-    border:       2px dash 0px 0px ;
-    border-color: @separatorcolor;
-    spacing:      2px ;
-    scrollbar:    true;
-    padding:      2px 0px 0px ;
-}
-
-element {
-    border:  0;
-    padding: 1px ;
-}
-
-element-text {
-    background-color: inherit;
-    text-color:       inherit;
-}
-
-element.normal.normal {
-    background-color: @normal-background;
-    text-color:       @normal-foreground;
-}
-
-element.normal.urgent {
-    background-color: @urgent-background;
-    text-color:       @urgent-foreground;
-}
-
-element.normal.active {
-    background-color: @active-background;
-    text-color:       @active-foreground;
-}
-
-element.selected.normal {
-    background-color: @selected-normal-background;
-    text-color:       @selected-normal-foreground;
-}
-
-element.selected.urgent {
-    background-color: @selected-urgent-background;
-    text-color:       @selected-urgent-foreground;
-}
-
-element.selected.active {
-    background-color: @selected-active-background;
-    text-color:       @selected-active-foreground;
-}
-
-element.alternate.normal {
-    background-color: @alternate-normal-background;
-    text-color:       @alternate-normal-foreground;
-}
-
-element.alternate.urgent {
-    background-color: @alternate-urgent-background;
-    text-color:       @alternate-urgent-foreground;
-}
-
-element.alternate.active {
-    background-color: @alternate-active-background;
-    text-color:       @alternate-active-foreground;
-}
-
-scrollbar {
-    width:        4px ;
-    border:       0;
-    handle-width: 8px ;
-    padding:      0;
-    handle-color: @mantle;
-}
-
-mode-switcher {
-    border:       2px dash 0px 0px ;
-    border-color: @separatorcolor;
-}
-
-button.selected {
-    background-color: @selected-normal-background;
-    text-color:       @selected-normal-foreground;
+    spacing: 0;
 }
 
 inputbar {
-    spacing:    0;
-    text-color: @normal-foreground;
-    padding:    1px ;
-}
-
-case-indicator {
-    spacing:    0;
-    text-color: @normal-foreground;
-}
-
-entry {
-    spacing:    0;
-    text-color: @normal-foreground;
+    spacing: 3;
+    padding: 5;
+    border: 0 0 1 0;
+    border-color: @separatorcolor;
+    children: [prompt, entry, case-indicator];
 }
 
 prompt {
-    spacing:    0;
-    text-color: @normal-foreground;
+    text-color: @accent;    // Mauve for prompt
+    padding: 0 5 0 0;
+    font: "bold 11px";
 }
 
-inputbar {
-    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+entry {
+    text-color: @fg;
+    background-color: #313244; // Surface0
+    border-radius: 2;
+    padding: 4;
+    border: 1;
+    border-color: #45475a; // Surface1
+    font: "10px";
 }
 
-textbox-prompt-colon {
-    expand:     false;
-    str:        ":";
-    margin:     0px 0.3em 0em 0em ;
-    text-color: @normal-foreground;
+case-indicator {
+    text-color: @fg-alt;
+    padding: 0 0 0 5;
+    font: "10px";
+}
+
+listview {
+    spacing: 1;
+    padding: 3;
+    scrollbar: true;
+    dynamic: true;
+    columns: 2;
+}
+
+element {
+    padding: 5;
+    border-radius: 2;
+    text-color: @fg;
+}
+
+element normal normal {
+    background-color: @bg-alt;
+    text-color: @fg;
+}
+
+element selected normal {
+    background-color: #45475a; // Surface1
+    text-color: @fg;
+}
+
+element alternate normal {
+    background-color: #313244; // Surface0
+    text-color: @fg-alt;
+}
+
+element active normal {
+    background-color: #45475a; // Surface1
+    text-color: @fg;
+}
+
+element selected active {
+    background-color: #585b70; // Surface2
+    text-color: @fg;
+}
+
+element urgent normal {
+    background-color: #45293f; // Darkened red background
+    text-color: @fg;
+}
+
+element selected urgent {
+    background-color: @urgent;
+    text-color: #1e1e2e; // Dark text on red
+}
+
+scrollbar {
+    handle-width: 2;
+    handle-color: #585b70; // Surface2
+}
+
+mode-switcher {
+    spacing: 3;
+    padding: 5;
+    border: 1 0 0 0;
+    border-color: @separatorcolor;
+}
+
+button {
+    padding: 4 6;
+    border-radius: 2;
+    text-color: @fg-alt;
+    font: "10px";
+}
+
+button normal {
+    background-color: @bg-alt;
+}
+
+button selected {
+    background-color: @accent;
+    text-color: #1e1e2e; // Dark text on mauve
+}
+
+textbox {
+    text-color: @fg;
+    font: "10px";
+}
+
+message {
+    text-color: @fg;
+    padding: 5;
+    border: 0 0 1 0;
+    border-color: @separatorcolor;
+    font: "10px";
+}
+
+// Icon styling
+element icon {
+    size: 1.2em;
+}
+
+element selected icon {
+    size: 1.2em;
 }
