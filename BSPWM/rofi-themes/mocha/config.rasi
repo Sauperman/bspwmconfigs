@@ -2,7 +2,7 @@ configuration {
 	modi: "drun,calc:qalc,window,run";
 	width: 24;
 	show-icons: true;
-	icon-theme: "candy";
+	icon-theme: "breeze";
 	lines: 10;
 	fixed-num-lines: true;
 	padding: 5;
