@@ -1,162 +1,174 @@
 configuration {
 	modi: "drun,calc:qalc,window,run";
-	width: 25;
+	width: 24;
 	show-icons: true;
-	icon-theme: "Breeze";
-	lines: 8;
-	columns: 2;
+	icon-theme: "candy";
+	lines: 10;
 	fixed-num-lines: true;
-	padding: 12;
+	padding: 5;
 	sidebar-mode: true;
-    font: "FiraCode Nerd Font 12";
-}
-
-listview {
-    lines: 8;
+    font: "FiraCode Nerd Font 10";
     columns: 2;
-    fixed-height: true;
 }
-/*******************************************************************************
- * ROFI Color theme - Grey and Black
- *******************************************************************************/
 
 * {
-    selected-normal-foreground:  rgba ( 255, 255, 255, 100 % );
-    foreground:                  rgba ( 180, 180, 180, 100 % );
-    normal-foreground:           @foreground;
-    alternate-normal-background: rgba ( 20, 20, 20, 100 % );
-    red:                         rgba ( 150, 150, 150, 100 % );
-    selected-urgent-foreground:  rgba ( 220, 220, 220, 100 % );
-    blue:                        rgba ( 120, 120, 120, 100 % );
-    urgent-foreground:           rgba ( 200, 200, 200, 100 % );
-    alternate-urgent-background: rgba ( 20, 20, 20, 100 % );
-    active-foreground:           rgba ( 160, 160, 160, 100 % );
-    lightbg:                     rgba ( 80, 80, 80, 100 % );
-    selected-active-foreground:  rgba ( 160, 160, 160, 100 % );
-    alternate-active-background: rgba ( 20, 20, 20, 100 % );
-    background:                  rgba ( 0, 0, 0, 100 % );
-    bordercolor:                 rgba ( 40, 40, 40, 100 % );
-    alternate-normal-foreground: @foreground;
-    normal-background:           rgba ( 10, 10, 10, 100 % );
-    lightfg:                     rgba ( 120, 120, 120, 100 % );
-    selected-normal-background:  rgba ( 40, 40, 40, 100 % );
-    border-color:                rgba ( 80, 80, 80, 100 % );
-    spacing:                     2;
-    separatorcolor:              rgba ( 50, 50, 50, 100 % );
-    urgent-background:           rgba ( 30, 30, 30, 100 % );
-    selected-urgent-background:  rgba ( 60, 60, 60, 100 % );
-    alternate-urgent-foreground: @urgent-foreground;
-    background-color:            rgba ( 0, 0, 0, 0 % );
-    alternate-active-foreground: @active-foreground;
-    active-background:           rgba ( 30, 30, 30, 100 % );
-    selected-active-background:  rgba ( 60, 60, 60, 100 % );
+    // Base colors
+    bg: #000000;          // Pure black
+    bg-alt: #1A1A1A;      // Dark grey
+    fg: #FFFFFF;          // Pure white
+    fg-alt: #CCCCCC;      // Light grey
+
+    // UI colors - darker grey tones
+    accent: #555555;      // Darker medium grey accent
+    urgent: #994444;      // Dark red for urgent
+    active: #666666;      // Slightly darker grey for active
+
+    background-color: transparent;
+    border-color: #333333;
+    separatorcolor: #444444;
+    spacing: 1;
 }
+
 window {
-    background-color: @background;
-    border:           1;
-    padding:          5;
+    background-color: @bg;
+    border: 1;
+    border-color: @border-color;
+    border-radius: 4;
+    padding: 5;
+    // True center positioning
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
 }
+
 mainbox {
-    border:  0;
-    padding: 0;
+    spacing: 0;
 }
-message {
-    border:       1px dash 0px 0px ;
-    border-color: @separatorcolor;
-    padding:      1px ;
-}
-textbox {
-    text-color: @foreground;
-}
-listview {
-    fixed-height: 0;
-    border:       2px dash 0px 0px ;
-    border-color: @separatorcolor;
-    spacing:      2px ;
-    scrollbar:    true;
-    padding:      2px 0px 0px ;
-}
-element {
-    border:  0;
-    padding: 1px ;
-}
-element-text {
-    background-color: inherit;
-    text-color:       inherit;
-}
-element.normal.normal {
-    background-color: @normal-background;
-    text-color:       @normal-foreground;
-}
-element.normal.urgent {
-    background-color: @urgent-background;
-    text-color:       @urgent-foreground;
-}
-element.normal.active {
-    background-color: @active-background;
-    text-color:       @active-foreground;
-}
-element.selected.normal {
-    background-color: @selected-normal-background;
-    text-color:       @selected-normal-foreground;
-}
-element.selected.urgent {
-    background-color: @selected-urgent-background;
-    text-color:       @selected-urgent-foreground;
-}
-element.selected.active {
-    background-color: @selected-active-background;
-    text-color:       @selected-active-foreground;
-}
-element.alternate.normal {
-    background-color: @alternate-normal-background;
-    text-color:       @alternate-normal-foreground;
-}
-element.alternate.urgent {
-    background-color: @alternate-urgent-background;
-    text-color:       @alternate-urgent-foreground;
-}
-element.alternate.active {
-    background-color: @alternate-active-background;
-    text-color:       @alternate-active-foreground;
-}
-scrollbar {
-    width:        4px ;
-    border:       0;
-    handle-width: 8px ;
-    padding:      0;
-}
-mode-switcher {
-    border:       2px dash 0px 0px ;
-    border-color: @separatorcolor;
-}
-button.selected {
-    background-color: @selected-normal-background;
-    text-color:       @selected-normal-foreground;
-}
+
 inputbar {
-    spacing:    0;
-    text-color: @normal-foreground;
-    padding:    1px ;
+    spacing: 3;
+    padding: 5;
+    border: 0 0 1 0;
+    border-color: @separatorcolor;
+    children: [prompt, entry, case-indicator];
 }
-case-indicator {
-    spacing:    0;
-    text-color: @normal-foreground;
-}
-entry {
-    spacing:    0;
-    text-color: @normal-foreground;
-}
+
 prompt {
-    spacing:    0;
-    text-color: @normal-foreground;
+    text-color: @fg;
+    padding: 0 5 0 0;
+    font: "bold 11px";
 }
-inputbar {
-    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+
+entry {
+    text-color: @fg;
+    background-color: #222222;
+    border-radius: 2;
+    padding: 4;
+    border: 1;
+    border-color: #333333;
+    font: "10px";
 }
-textbox-prompt-colon {
-    expand:     false;
-    str:        ":";
-    margin:     0px 0.3em 0em 0em ;
-    text-color: @normal-foreground;
+
+case-indicator {
+    text-color: @fg-alt;
+    padding: 0 0 0 5;
+    font: "10px";
+}
+
+listview {
+    spacing: 1;
+    padding: 3;
+    scrollbar: true;
+    dynamic: true;
+    columns: 2;
+}
+
+element {
+    padding: 5;
+    border-radius: 2;
+    text-color: @fg;
+}
+
+element normal normal {
+    background-color: @bg-alt;
+    text-color: @fg;
+}
+
+element selected normal {
+    background-color: @accent;
+    text-color: @fg;
+}
+
+element alternate normal {
+    background-color: #252525;
+    text-color: @fg-alt;
+}
+
+element active normal {
+    background-color: #2A2A2A;
+    text-color: @fg;
+}
+
+element selected active {
+    background-color: @active;
+    text-color: @fg;
+}
+
+element urgent normal {
+    background-color: #2A1A1A;
+    text-color: @fg;
+}
+
+element selected urgent {
+    background-color: @urgent;
+    text-color: @fg;
+}
+
+scrollbar {
+    handle-width: 2;
+    handle-color: #555555;
+}
+
+mode-switcher {
+    spacing: 3;
+    padding: 5;
+    border: 1 0 0 0;
+    border-color: @separatorcolor;
+}
+
+button {
+    padding: 4 6;
+    border-radius: 2;
+    text-color: @fg-alt;
+    font: "10px";
+}
+
+button normal {
+    background-color: @bg-alt;
+}
+
+button selected {
+    background-color: @accent;
+    text-color: @fg;
+}
+
+textbox {
+    text-color: @fg;
+    font: "10px";
+}
+
+message {
+    text-color: @fg;
+    padding: 5;
+    border: 0 0 1 0;
+    border-color: @separatorcolor;
+    font: "10px";
+}
+
+// Icon styling
+element icon {
+    size: 1.2em;
+}
+
+element selected icon {
+    size: 1.2em;
 }
