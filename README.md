@@ -72,7 +72,7 @@ systemctl --user enable --now pipewire pipewire-pulse wireplumber
 
 # GREEN-THEME
 
-![Description of the screenshot](green.png)
-
+![Description of the screenshot](green1.png)
+![Description of the screenshot](green2.png)
 
 
