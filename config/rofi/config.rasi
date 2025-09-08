@@ -1,5 +1,4 @@
 configuration {
-
 	modi: "drun,calc:qalc,window,run";
 	width: 25;
 	show-icons: true;
@@ -9,7 +8,7 @@ configuration {
 	fixed-num-lines: true;
 	padding: 12;
 	sidebar-mode: true;
-
+    font: "FiraCode Nerd Font 12";
 }
 
 listview {
