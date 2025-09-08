@@ -68,7 +68,8 @@ systemctl --user enable --now pipewire pipewire-pulse wireplumber
 
 # GRUVBOX-THEME
 
-![Description of the screenshot](gruvbox.png)
+![Description of the screenshot](gruv.png)
+![Description of the screenshot](gruvb.png)
 
 # GREEN-THEME
 
