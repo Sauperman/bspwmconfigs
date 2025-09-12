@@ -44,6 +44,7 @@ offset-x = 0%
 offset-y = 0%
 radius = 0.0
 fixed-center = true
+bottom = false
 
 background = ${colors.background}
 foreground = ${colors.foreground}  ; Catppuccin Mocha text color
