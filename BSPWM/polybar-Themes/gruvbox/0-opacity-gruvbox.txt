@@ -455,4 +455,16 @@ hook-2 = displaytitle switch
 initial = 1
 
 [module/xkeyboard]
-type = internal/xkey
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = "%{F#d3869b}󰌌 %{F-}"
+format-prefix-foreground = #ebdbb2
+
+label-layout = %layout%
+label-layout-foreground = #ebdbb2
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = #ebdbb2
+label-indicator-foreground = #1d2021
