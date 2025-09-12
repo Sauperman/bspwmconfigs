@@ -1,0 +1,436 @@
+; =============================================
+; BEAUTIFUL MODERN POLYBAR CONFIG
+; =============================================
+
+[settings]
+screenchange-reload = false
+pseudo-transparency = true
+compositing-background = source
+compositing-foreground = over
+compositing-border = over
+
+; =============================================
+; MODERN COLOR SCHEME (Matches most wallpapers)
+; =============================================
+
+[colors]
+; Base colors (dark translucent)
+background = #00000000
+background-alt = #2a2a2aaa
+foreground = #cdd6f4  ; Changed to Catppuccin Mocha text color
+
+; Accent colors (Catppuccin Mocha)
+primary = #f5c2e7    ; Pink accent
+secondary = #89dceb  ; Cyan accent
+accent1 = #a6e3a1    ; Green accent
+accent2 = #f9e2af    ; Yellow accent
+accent3 = #cba6f7    ; Purple accent
+alert = #f38ba8      ; Red for alerts
+
+; Gradient colors for bars
+gradient1 = #f5c2e7
+gradient2 = #89dceb
+gradient3 = #a6e3a1
+
+; =============================================
+; MAIN BAR CONFIGURATION
+; =============================================
+
+[bar/main]
+monitor = ${env:MONITOR:}
+width = 100%
+height = 20
+offset-x = 0%
+offset-y = 0%
+radius = 0.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}  ; Catppuccin Mocha text color
+
+border-size = 0
+padding-left = 2
+padding-right = 2
+module-margin-left = 2
+module-margin-right = 2
+
+; macOS style fonts
+font-0 = "SF Pro Display:size=11;2"
+font-1 = "Symbols Nerd Font:size=13;3"
+font-2 = "Fira Code:size=10;1"
+
+modules-left = apps temperature keyboard-backlight brightness battery Network netstat wall
+modules-center = bspwm i3
+modules-right = filesystem volume cpu memory date power-profile Logout
+
+wm-restack = bspwm
+tray-position = right
+tray-padding = 2
+tray-background = ${colors.background-alt}
+
+; =============================================
+; MODULE: APPS (Application Launcher)
+; =============================================
+
+[module/apps]
+type = custom/script
+exec = polysubs
+interval = 1
+label = "  %{A1:}%{A3:}%{T2}%{F#cba6f7}%{F-}%{T-}"
+format-padding = 2
+format-margin = 0
+format-foreground = #cdd6f4
+format-background = ${colors.background}
+click-left = rofi -show drun &
+click-right = rofi -show drun &
+
+; =============================================
+; MODULE: TEMPERATURE
+; =============================================
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-foreground = #cdd6f4
+format-warn = <ramp> <label-warn>
+format-warn-foreground = #cdd6f4
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = #cdd6f4
+
+ramp-0 = %{F#89dceb}%{F-}
+ramp-1 = %{F#a6e3a1}%{F-}
+ramp-2 = %{F#f9e2af}%{F-}
+ramp-foreground = #cdd6f4
+
+; =============================================
+; MODULE: KEYBOARD BACKLIGHT
+; =============================================
+
+[module/keyboard-backlight]
+type = custom/script
+exec = brightnessctl -m --device='*::kbd_backlight' | awk -F, '{printf "%%{F#cba6f7}󰌌%%{F-} %.0f%%", $4}'
+interval = 5
+format-prefix = "  "
+format-suffix = "  "
+format-background = ${colors.background}
+format-foreground = #cdd6f4
+format-background-hover = #1a1a2a
+scroll-up = brightnessctl --device='*::kbd_backlight' set 50%+
+scroll-down = brightnessctl --device='*::kbd_backlight' set 50%-
+click-left = brightnessctl --device='*::kbd_backlight' set 50%+
+click-right = brightnessctl --device='*::kbd_backlight' set 50%-
+
+; =============================================
+; MODULE: BRIGHTNESS
+; =============================================
+
+[module/brightness]
+type = custom/script
+exec = brightnessctl -m | awk -F, '{printf "%%{F#f9e2af}󰃟%%{F-} %.0f%%", $4}'
+interval = 5
+format-prefix = "  "
+format-suffix = "  "
+format-background = ${colors.background}
+format-foreground = #cdd6f4
+format-background-hover = #1a1a2a
+scroll-up = brightnessctl set 5%+
+scroll-down = brightnessctl set 5%-
+click-left = brightnessctl set 10%+
+click-right = brightnessctl set 10%-
+
+; =============================================
+; MODULE: BATTERY
+; =============================================
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-charging-foreground = #cdd6f4
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-foreground = #cdd6f4
+
+format-full = <ramp-capacity> <label-full>
+format-full-foreground = #cdd6f4
+
+ramp-capacity-0 = %{F#f38ba8}%{F-}
+ramp-capacity-1 = %{F#f38ba8}%{F-}
+ramp-capacity-2 = %{F#f9e2af}%{F-}
+ramp-capacity-3 = %{F#a6e3a1}%{F-}
+ramp-capacity-4 = %{F#a6e3a1}%{F-}
+ramp-capacity-foreground = #cdd6f4
+
+animation-charging-0 = %{F#f38ba8}%{F-}
+animation-charging-1 = %{F#f38ba8}%{F-}
+animation-charging-2 = %{F#f9e2af}%{F-}
+animation-charging-3 = %{F#a6e3a1}%{F-}
+animation-charging-4 = %{F#a6e3a1}%{F-}
+animation-charging-foreground = #cdd6f4
+animation-charging-framerate = 1000
+
+label-charging = %percentage%%
+label-discharging = %percentage%%
+label-full = %percentage%%
+label-low = %percentage%%!
+low-percentage = 15
+
+; =============================================
+; MODULE: NETWORK
+; =============================================
+
+[module/Network]
+type = custom/script
+exec = echo "%{F#89dceb}󰖩%{F-}"
+interval = 1
+format-prefix = "  "
+format-suffix = "  "
+format-background = ${colors.background}
+format-foreground = #cdd6f4
+format-background-hover = #1a1a2a
+click-left = nm-connection-editor &
+click-right = nm-connection-editor &
+
+; =============================================
+; MODULE: NETSTAT
+; =============================================
+
+[module/netstat]
+type = custom/script
+exec = if ping -c 1 8.8.8.8 &> /dev/null; then echo "%{F#a6e3a1}󰒢%{F-} Connected"; else echo "%{F#f38ba8}󰒢%{F-} Offline"; fi
+interval = 5
+format-prefix = "  "
+format-suffix = "  "
+format-background = ${colors.background}
+format-foreground = #cdd6f4
+format-background-hover = #1a1a2a
+
+; =============================================
+; MODULE: WALL
+; =============================================
+
+[module/wall]
+type = custom/script
+exec = echo "%{F#cba6f7}%{F-}"
+interval = 1
+format-prefix = "  "
+format-suffix = "  "
+format-background = ${colors.background}
+format-foreground = #cdd6f4
+format-background-hover = #1a1a2a
+click-left = feh --bg-fill --randomize ~/.config/wallpaper/* && notify-send "Wallpaper" "Random wallpaper set successfully!"
+click-right = feh --bg-fill --randomize ~/.config/wallpaper/*
+click-middle = notify-send "Wallpaper" "Click left: Random wallpaper\nClick right: Random wallpaper (silent)"
+
+; =============================================
+; MODULE: BSPWM (Workspace Manager)
+; =============================================
+
+[module/bspwm]
+type = internal/bspwm
+pin-workspaces = true
+
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-padding = 2
+label-focused-foreground = #cdd6f4
+
+label-occupied = %index%
+label-occupied-padding = 2
+label-occupied-foreground = #cdd6f4
+
+label-urgent = %index%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+label-urgent-foreground = #cdd6f4
+
+label-empty = %index%
+label-empty-foreground = #6c7086
+label-empty-padding = 2
+
+; =============================================
+; MODULE: I3
+; =============================================
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+label-mode-padding = 2
+label-mode-foreground = #11111b
+label-mode-background = #cdd6f4
+
+label-focused = %index%
+label-focused-background = ${module/bspwm.label-focused-background}
+label-focused-padding = ${module/bspwm.label-focused-padding}
+label-focused-foreground = #cdd6f4
+
+label-unfocused = %index%
+label-unfocused-padding = ${module/bspwm.label-occupied-padding}
+label-unfocused-foreground = #cdd6f4
+
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-padding = ${self.label-focused-padding}
+label-visible-foreground = #cdd6f4
+
+label-urgent = %index%
+label-urgent-background = ${module/bspwm.label-urgent-background}
+label-urgent-padding = ${module/bspwm.label-urgent-padding}
+label-urgent-foreground = #cdd6f4
+
+; =============================================
+; MODULE: FILESYSTEM
+; =============================================
+
+[module/filesystem]
+type = internal/fs
+interval = 60
+fixed-values = true
+
+mount-0 = /
+
+format-mounted = <label-mounted>
+format-mounted-background = ${colors.background}
+format-mounted-padding = 1
+format-mounted-margin = 1
+
+format-unmounted = <label-unmounted>
+format-unmounted-background = ${colors.background-alt}
+format-unmounted-foreground = #cdd6f4
+format-unmounted-padding = 1
+format-unmounted-margin = 1
+
+label-mounted = %{F#cdd6f4}󰋊 %used%%%{F-}
+label-mounted-background = ${color.mb}
+
+label-unmounted = %{F#cdd6f4} %mountpoint% not mounted%{F-}
+
+ramp-used-0 = %{F#a6e3a1}%{F-}
+ramp-used-1 = %{F#f9e2af}%{F-}
+ramp-used-2 = %{F#fab387}%{F-}
+ramp-used-3 = %{F#f38ba8}%{F-}
+ramp-used-foreground = #cdd6f4
+
+; =============================================
+; MODULE: VOLUME
+; =============================================
+
+[module/volume]
+type = internal/pulseaudio
+
+format-volume = <ramp-volume> <bar-volume> <label-volume>
+format-volume-background = ${colors.background}
+format-volume-foreground = #cdd6f4
+format-volume-padding = 1
+format-volume-margin = 1
+
+format-muted = <label-muted>
+format-muted-background = #1a1a2a
+format-muted-foreground = #cdd6f4
+format-muted-padding = ${self.format-volume-padding}
+format-muted-margin = ${self.format-volume-margin}
+
+ramp-volume-0 = %{F#cdd6f4}%{F-}
+ramp-volume-1 = %{F#cdd6f4}%{F-}
+ramp-volume-2 = %{F#cdd6f4}%{F-}
+
+bar-volume-width = 6
+bar-volume-format = %{F#cdd6f4}%fill%%empty%%{F-}
+bar-volume-fill = 
+bar-volume-empty = 
+
+label-volume = %percentage%%
+label-muted = %{F#cdd6f4}󰖁 MUTED%{F-}
+
+click-left = wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+scroll-up = wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
+scroll-down = wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-
+
+click-right = pavucontrol &
+click-middle = wpctl set-volume @DEFAULT_AUDIO_SINK@ 100%
+
+; =============================================
+; MODULE: CPU USAGE
+; =============================================
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "%{F#f38ba8}󰍛 %{F-}"
+format-prefix-foreground = #cdd6f4
+label = %percentage:2%%
+label-foreground = #cdd6f4
+
+; =============================================
+; MODULE: MEMORY USAGE
+; =============================================
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "%{F#cba6f7}⚡%{F-}"
+format-prefix-foreground = #cdd6f4
+label = %percentage_used%%
+label-foreground = #cdd6f4
+
+; =============================================
+; MODULE: DATE & TIME
+; =============================================
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = " %Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix = "%{F#89dceb}󰃰 %{F-}"
+format-prefix-foreground = #cdd6f4
+label = %date% %time%
+label-foreground = #cdd6f4
+
+; =============================================
+; MODULE: POWER PROFILE
+; =============================================
+
+[module/power-profile]
+type = custom/script
+exec = powerprofilesctl get | grep -q power-saver && echo "%{F#a6e3a1}%{F-}" || (powerprofilesctl get | grep -q balanced && echo "%{F#f9e2af}%{F-}" || echo "%{F#f38ba8}󰓅%{F-}")
+interval = 5
+signal = 1
+format-prefix = "  "
+format-suffix = "  "
+format-background = ${colors.background}
+format-foreground = #cdd6f4
+format-background-hover = #1a1a2a
+click-left = powerprofilesctl set $(powerprofilesctl get | grep -q power-saver && echo "balanced" || (powerprofilesctl get | grep -q balanced && echo "performance" || echo "power-saver")) && pkill -USR1 polybar
+click-middle = notify-send "Power Profile" "Current: $(powerprofilesctl get)"
+
+; =============================================
+; MODULE: LOGOUT
+; =============================================
+
+[module/Logout]
+type = custom/script
+exec = echo "%{F#f38ba8}󰍃%{F-}"
+interval = 1
+format-prefix = "  "
+format-suffix = "  "
+format-background = ${colors.background}
+format-foreground = #cdd6f4
+format-background-hover = #1a1a2a
+click-left = wlogout &
