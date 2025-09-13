@@ -197,8 +197,8 @@ format-suffix = "  "
 format-background = ${colors.background}
 format-foreground = #ebdbb2
 format-background-hover = #1a1a2a
-click-left = nm-connection-editor &
-click-right = nm-connection-editor &
+click-left = bash ~/.config/rofi/wifi.sh &
+click-right = bash ~/.config/rofi/wifi.sh &
 
 ; =============================================
 ; MODULE: NETSTAT
