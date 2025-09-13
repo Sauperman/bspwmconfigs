@@ -18,6 +18,7 @@ yay -S wlogout nm-applet ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono xwin
 
 # AFTER
 
+sudo chmod +x ~/.config/rofi/wifi.sh
 sudo chmod +x .config/bspwm/bspwmrc
 sudo chmod +x .config/sxhkd/sxhkdrc
 .
