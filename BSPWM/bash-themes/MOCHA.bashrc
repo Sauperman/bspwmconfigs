@@ -16,7 +16,7 @@ YELLOW='\[\033[38;5;227m\]'      # #f9e2af'
 GREEN='\[\033[38;5;150m\]'       # #a6e3a1'
 TEAL='\[\033[38;5;115m\]'        # #94e2d5'
 SKY='\[\033[38;5;117m\]'         # #89dceb'
-SAPPHIRE='\[\033[38;5;111m\]'    # #74c7ec'
+SAPPHIRE='\[\033[38;5;111m']'    # #74c7ec'
 BLUE='\[\033[38;5;105m\]'        # #89b4fa'
 LAVENDER='\[\033[38;5;183m\]'    # #b4befe'
 
@@ -76,6 +76,9 @@ set_prompt() {
     if [ -n "$git_branch" ]; then
         PS1+="${BOLD}${MAUVE} ${PINK}${git_branch}${git_status_indicator}${RESET}"
     fi
+
+    # 4-color dots indicator
+    PS1+="${BOLD}${MAUVE}•${BLUE}•${SKY}•${TEAL}•${RESET}"
 
     # Prompt character (gradient effect)
     PS1+="${BOLD}${MAUVE}❯${BLUE}❯${SKY}❯${RESET} "
