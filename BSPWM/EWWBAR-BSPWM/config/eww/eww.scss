@@ -1,127 +1,223 @@
 * {
 all: unset;
 font-family: "Source Code Pro", "JetBrainsMono Nerd Font", monospace;
-font-size: 12px;  /* Even smaller font */
+font-size: 11px;
 }
 
 .bar {
-  background-color: rgba(30, 30, 30, 0.50);
-  border-radius: 0 10px 10px 0;
-  padding: 5px;  /* Minimal padding */
-  color: white;
+  background-color: rgba(24, 24, 37, 0.92);
+  border-radius: 0 12px 12px 0;
+  padding: 4px 5px;
+  color: #cdd6f4;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  min-height: 28px;
+  border: 1px solid rgba(108, 112, 134, 0.2); /* Subtle border instead of purple */
 }
 
 .workspaces {
-  margin: 0px 0;
+  margin: 2px 0;
+  background-color: rgba(30, 30, 46, 0.3);
+  border-radius: 6px;
+  padding: 2px;
 }
 
 .workspace-btn {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
-  padding: 1px 2px;  /* Tiny padding */
-  margin: 1px 0;
-  min-width: 20px;    /* Very compact */
-  min-height: 18px;   /* Very compact */
+  background: linear-gradient(to bottom, rgba(88, 91, 112, 0.3), rgba(69, 71, 90, 0.3));
+  border-radius: 4px;
+  padding: 2px 4px;
+  margin: 1px;
+  min-width: 20px;
+  min-height: 16px;
+  color: #cdd6f4;
+  transition: all 0.15s ease;
 }
 
 .workspace-btn:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background: linear-gradient(to bottom, rgba(108, 112, 134, 0.5), rgba(88, 91, 112, 0.5));
+}
+
+.workspace-btn.active {
+  background: linear-gradient(to bottom, rgba(137, 180, 250, 0.4), rgba(116, 157, 224, 0.4));
+  color: #1e1e2e;
+  font-weight: bold;
 }
 
 /* Arch Linux logo button styles */
 .arch-btn {
-  background-color: rgba(23, 147, 209, 0.3); /* Arch blue with transparency */
-  border-radius: 4px;
-  padding: 0px;
-  margin: 0px 0;
-  min-width: 30px;    /* Very compact */
-  min-height: 10px;   /* Very compact */
-  font-size: 10px;    /* Small icon */
+  background: linear-gradient(135deg, rgba(137, 180, 250, 0.3), rgba(116, 157, 224, 0.3));
+  border-radius: 5px;
+  padding: 3px 3px;
+  margin: 3px 1px;
+  min-width: 26px;
+  min-height: 12px;
+  font-size: 10px;
+  font-weight: bold;
+  transition: all 0.15s ease;
 }
 
 .arch-btn:hover {
-  background-color: rgba(23, 147, 209, 0.5); /* Brighter Arch blue on hover */
+  background: linear-gradient(135deg, rgba(137, 180, 250, 0.5), rgba(116, 157, 224, 0.5));
 }
 
 .arch-text {
-  color: #1793d1; /* Arch blue color */
+  color: #89b4fa;
 }
 
 /* WiFi button styles */
 .wifi-btn {
-  background-color: rgba(255, 184, 97, 0.3);
-  border-radius: 4px;
-  padding: 2px;
-  margin: 1px 0;
-  min-width: 20px;    /* Very compact */
-  min-height: 18px;   /* Very compact */
-  font-size: 10px;    /* Small icon */
+  background: linear-gradient(to bottom, rgba(166, 227, 161, 0.3), rgba(148, 207, 143, 0.3));
+  border-radius: 5px;
+  padding: 3px;
+  margin: 3px 1px;
+  min-width: 22px;
+  min-height: 16px;
+  font-size: 10px;
+  transition: all 0.15s ease;
 }
 
 .wifi-btn:hover {
-  background-color: rgba(255, 174, 77, 0.5);
+  background: linear-gradient(to bottom, rgba(166, 227, 161, 0.5), rgba(148, 207, 143, 0.5));
 }
 
 .wifi-text {
-  color: #ffddb3;
+  color: #a6e3a1;
 }
 
 /* Htop button styles */
 .htop-btn {
-  background-color: rgba(140, 200, 100, 0.3);
-  border-radius: 4px;
-  padding: 2px;
-  margin: 1px 0;
-  min-width: 20px;    /* Very compact */
-  min-height: 18px;   /* Very compact */
-  font-size: 10px;    /* Small icon */
+  background: linear-gradient(to bottom, rgba(249, 226, 175, 0.3), rgba(230, 205, 155, 0.3));
+  border-radius: 5px;
+  padding: 3px;
+  margin: 3px 1px;
+  min-width: 22px;
+  min-height: 16px;
+  font-size: 10px;
+  transition: all 0.15s ease;
 }
 
 .htop-btn:hover {
-  background-color: rgba(140, 200, 100, 0.5);
+  background: linear-gradient(to bottom, rgba(249, 226, 175, 0.5), rgba(230, 205, 155, 0.5));
 }
 
 .htop-text {
-  color: #a3be8c;
+  color: #f9e2af;
 }
 
 .power-btn {
-  background-color: rgba(255, 100, 100, 0.3);
-  border-radius: 4px;
-  padding: 2px;
-  margin: 1px 0;
-  min-width: 20px;    /* Very compact */
-  min-height: 18px;   /* Very compact */
-  font-size: 10px;    /* Small power icon */
+  background: linear-gradient(to bottom, rgba(243, 139, 168, 0.3), rgba(220, 120, 150, 0.3));
+  border-radius: 5px;
+  padding: 3px;
+  margin: 3px 1px;
+  min-width: 22px;
+  min-height: 16px;
+  font-size: 10px;
+  transition: all 0.15s ease;
 }
 
 .power-btn:hover {
-  background-color: rgba(255, 100, 100, 0.5);
+  background: linear-gradient(to bottom, rgba(243, 139, 168, 0.5), rgba(220, 120, 150, 0.5));
+}
+
+.power-text {
+  color: #f38ba8;
 }
 
 /* Style for new modules you'll add */
 .module-btn {
-  background-color: rgba(100, 100, 255, 0.2);
-  border-radius: 3px;
-  padding: 1px 2px;
-  margin: 1px 0;
-  min-width: 20px;
-  min-height: 18px;
+  background: linear-gradient(to bottom, rgba(180, 190, 254, 0.3), rgba(160, 170, 230, 0.3));
+  border-radius: 5px;
+  padding: 3px;
+  margin: 3px 1px;
+  min-width: 22px;
+  min-height: 16px;
   font-size: 9px;
+  transition: all 0.15s ease;
 }
 
 .module-btn:hover {
-  background-color: rgba(100, 100, 255, 0.3);
+  background: linear-gradient(to bottom, rgba(180, 190, 254, 0.5), rgba(160, 170, 230, 0.5));
+}
+
+.module-text {
+  color: #b4befe;
 }
 
 .spacer {
-  min-height: 100px;  /* Very small spacer */
+  min-height: 8px;
+  background: linear-gradient(to right, transparent, rgba(200, 200, 200, 0.1), transparent);
+  margin: 4px 0;
+  border-radius: 1px;
 }
 
 .modules-container {
-  margin: 2px 0;
+  margin: 4px 0;
+  background-color: rgba(30, 30, 46, 0.3);
+  border-radius: 6px;
+  padding: 2px;
 }
 
 .bottom-container {
+  margin: 4px 0;
+  background-color: rgba(30, 30, 46, 0.3);
+  border-radius: 6px;
+  padding: 2px;
+}
+
+.system-stats {
+  background: linear-gradient(to bottom, rgba(88, 91, 112, 0.2), rgba(69, 71, 90, 0.2));
+  border-radius: 5px;
+  padding: 3px;
   margin: 2px 0;
+}
+
+.clock {
+  background: linear-gradient(135deg, rgba(203, 166, 247, 0.25), rgba(180, 145, 225, 0.25));
+  border-radius: 5px;
+  padding: 3px 6px;
+  margin: 2px 0;
+  font-weight: bold;
+  color: #cba6f7;
+}
+
+.separator {
+  color: rgba(108, 112, 134, 0.4);
+  margin: 0 1px;
+}
+
+.volume-slider scale trough {
+  all: unset;
+  background-color: rgba(108, 112, 134, 0.3);
+  border-radius: 5px;
+  min-height: 5px;
+  min-width: 70px;
+  margin: 0 3px;
+}
+
+.volume-slider scale trough highlight {
+  all: unset;
+  background: linear-gradient(to right, #74c7ec, #89b4fa);
+  border-radius: 5px;
+}
+
+.brightness-slider scale trough {
+  all: unset;
+  background-color: rgba(108, 112, 134, 0.3);
+  border-radius: 5px;
+  min-height: 5px;
+  min-width: 70px;
+  margin: 0 3px;
+}
+
+.brightness-slider scale trough highlight {
+  all: unset;
+  background: linear-gradient(to right, #f9e2af, #a6e3a1);
+  border-radius: 5px;
+}
+
+.cpu-usage, .memory-usage, .disk-usage {
+  margin: 0 2px;
+  padding: 1px 3px;
+  border-radius: 3px;
+  background-color: rgba(108, 112, 134, 0.2);
+  font-size: 10px;
 }
