@@ -33,15 +33,10 @@
     ;; Spacer - this will take up remaining space
     (box :class "spacer" :hexpand true :vexpand true)
 
+
+
     ;; Bottom section with network and power menu
     (box :orientation "vertical" :class "bottom-container" :vexpand false
-
-      ;; Battery module - added before Arch logo
-      (box :class "battery-container"
-        :tooltip "Battery status"
-        (label :class "battery-text" :text "")
-        (label :class "battery-percentage" :text "")
-      )
 
       ;; Arch Linux logo module - runs rofi drun
       (button :class "arch-btn" :onclick "rofi -show drun &"
@@ -51,9 +46,9 @@
       (button :class "htop-btn" :onclick "bash -c 'if command -v konsole &> /dev/null && command -v htop &> /dev/null; then konsole -e htop; else notify-send \"Konsole or htop not installed\"; fi'"
         (label :class "htop-text" :text ""))
 
-      ;; WiFi/NMTUI module - updated to use Konsole
-      (button :class "wifi-btn" :onclick "bash -c 'if command -v konsole &> /dev/null && command -v nmtui &> /dev/null; then konsole -e nmtui; else notify-send \"Konsole or nmtui not installed\"; fi'"
-        (label :class "wifi-text" :text ""))
+      ;; WiFi module - fixed: runs wifi.sh script with WiFi logo
+      (button :class "wifi-btn" :onclick "bash /home/sarbaaz/.config/rofi/wifi.sh"
+        (label :class "wifi-text" :text ""))
 
       ;; Power menu
       (button :class "power-btn" :onclick "bash -c 'if command -v wlogout &> /dev/null; then wlogout; else notify-send \"wlogout not installed\"; fi'"
