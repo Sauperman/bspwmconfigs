@@ -1,131 +1,233 @@
-# ~/.bashrc - Compact Green Ribbon Prompt (Vibrant)
+# ~/.bashrc
 
 # If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
+[[ $- != *i* ]] && return
 
-# ===== GREEN COLOR SCHEME (VIBRANT) =====
-# Background colors
-USER_BG="48;5;155"      # bright green (#a6e3a1) -> brighter green (#a6e3a1)
-DIR_BG="48;5;71"        # medium green (#87faab) -> brighter green (#74ec87)
-TIME_BG="48;5;77"       # teal green (#94e2d5) -> brighter teal (#94e2d5)
-EXIT_BG="48;5;84"       # bright green (#a6e3a1) -> brighter green (#a6e3a1)
-PROMPT_BG="48;5;78"     # light green (#c2f5e7) -> brighter green (#c2f5e7)
+# ===== GREEN COLOR THEME =====
+# Green shades
+GREEN_LIGHT='\[\033[38;5;114m\]'   # Bright green
+GREEN_MEDIUM='\[\033[38;5;70m\]'   # Medium green
+GREEN_DARK='\[\033[38;5;28m\]'     # Dark green
+GREEN_NEON='\[\033[38;5;82m\]'     # Neon green
+GREEN_FOREST='\[\033[38;5;22m\]'   # Forest green
+GREEN_MINT='\[\033[38;5;121m\]'    # Mint green
+GREEN_OLIVE='\[\033[38;5;64m\]'    # Olive green
+GREEN_LIME='\[\033[38;5;148m\]'    # Lime green
+GREEN_EMERALD='\[\033[38;5;35m\]'  # Emerald green
+GREEN_SEA='\[\033[38;5;29m\]'      # Sea green
+GREEN_SPRING='\[\033[38;5;48m\]'   # Spring green
+GREEN_TEAL='\[\033[38;5;30m\]'     # Teal green
 
-# Foreground colors
-FG_DARK="38;5;233"      # dark green (#0f170f) -> darker (#0f0f17)
-FG_LIGHT="38;5;255"     # light green (#d6f4cd) -> brighter (#ffffff)
+# Complementary colors (for contrast)
+GRAY_LIGHT='\[\033[38;5;250m\]'    # Light gray
+GRAY_MEDIUM='\[\033[38;5;245m\]'   # Medium gray
+GRAY_DARK='\[\033[38;5;240m\]'     # Dark gray
+WHITE='\[\033[38;5;255m\]'         # White
+BLACK='\[\033[38;5;232m\]'         # Black
 
-# Error colors (more vibrant red)
-ERROR_BG="48;5;203"     # red (#f38ba8) -> brighter red (#f38ba8)
-ERROR_FG="38;5;231"     # white text
+# Accent colors (minimal use)
+YELLOW_GREEN='\[\033[38;5;148m\]'  # Yellow-green
+BLUE_GREEN='\[\033[38;5;37m\]'     # Blue-green
 
-# ===== PROMPT FUNCTIONS =====
-# Git status function
+# Formatting
+BOLD='\[\033[1m\]'
+DIM='\[\033[2m\]'
+RESET='\[\033[0m\]'
+
+# ===== PROMPT =====
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/  \1/'
+}
+
 git_status() {
-    local git_branch=$(git branch 2>/dev/null | sed -n '/^\*/s/^\* //p')
-    if [ -n "$git_branch" ]; then
-        if git diff --quiet 2>/dev/null; then
-            echo "\[\033[48;5;84m\]\[\033[38;5;233m\]  $git_branch \[\033[0m\]"
-        else
-            echo "\[\033[${ERROR_BG}m\]\[\033[${ERROR_FG}m\]  $git_branch ● \[\033[0m\]"
-        fi
+    local status=$(git status --porcelain 2>/dev/null)
+    if [ -n "$status" ]; then
+        echo " ${GREEN_FOREST}●"  # Dark green dot for changes
+    else
+        echo " ${GREEN_LIGHT}●"    # Bright green dot for clean
     fi
 }
 
-# Exit status function
 exit_status() {
     if [ $? -eq 0 ]; then
-        echo "\[\033[${EXIT_BG}m\]\[\033[${FG_DARK}m\] ✓ \[\033[0m\]"
+        echo "${GREEN_LIGHT}✓"
     else
-        echo "\[\033[${ERROR_BG}m\]\[\033[${ERROR_FG}m\] ✗ \[\033[0m\]"
+        echo "${GREEN_FOREST}✗"
     fi
 }
 
-# ===== COMPACT PROMPT =====
 set_prompt() {
-    local exit_status="$(exit_status)"
-    local git_info="$(git_status)"
+    local exit_code="$(exit_status)"
+    local git_branch="$(parse_git_branch)"
+    local git_status_indicator="$(git_status)"
 
-    # Build the compact prompt
-    PS1="\[\033[${USER_BG}m\]\[\033[${FG_DARK}m\]{ \u@\h }\[\033[0m\]"
+    # Single line prompt with green theme
+    PS1="${BOLD}${GREEN_MEDIUM}[${exit_code}${GREEN_MEDIUM}]${RESET}"
+    PS1+="${BOLD}${GREEN_EMERALD} ${GREEN_LIME}\u${GRAY_MEDIUM}@${GREEN_TEAL}\h${RESET}"
+    PS1+="${BOLD}${GREEN_SEA} ${GREEN_MEDIUM}[\w]${RESET}"
 
-    if [ -n "$git_info" ]; then
-        PS1+="─$git_info"
+    # Git info if in repo
+    if [ -n "$git_branch" ]; then
+        PS1+="${BOLD}${GREEN_EMERALD} ${GREEN_SPRING}${git_branch}${git_status_indicator}${RESET}"
     fi
 
-    PS1+="\[\033[${DIR_BG}m\]\[\033[${FG_DARK}m\]─[ \w ]\[\033[0m\]"
-    PS1+="\[\033[${TIME_BG}m\]\[\033[${FG_LIGHT}m\]─{ \t }\[\033[0m\]"
-    PS1+="$exit_status"
-    PS1+="\[\033[${PROMPT_BG}m\]\[\033[${FG_DARK}m\]{ \$ }➤\[\033[0m\] "
+    # 4-color green dots indicator
+    PS1+="${BOLD}${GREEN_EMERALD}•${GREEN_MEDIUM}•${GREEN_LIME}•${GREEN_TEAL}•${RESET}"
+
+    # Prompt character (green gradient effect)
+    PS1+="${BOLD}${GREEN_EMERALD}❯${GREEN_MEDIUM}❯${GREEN_LIME}❯${RESET} "
 }
 
 PROMPT_COMMAND=set_prompt
 
 # ===== ALIASES =====
-alias ls='ls --color=auto'
-alias ll='ls -alF --color=auto'
-alias la='ls -A --color=auto'
-alias l='ls -CF --color=auto'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+# Navigation
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias ~='cd ~'
 
-# Enhanced ls colors for better visibility (green theme)
-export LS_COLORS='rs=0:di=01;92:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;92:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'
+# Colorized commands
+alias ls='ls --color=auto --group-directories-first'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias diff='diff --color=auto'
+alias ip='ip -color=auto'
 
-# ===== TERMINAL BEHAVIOR =====
-# Append to the history file, don't overwrite it
-shopt -s histappend
+# LS variations
+alias ll='ls -lh --color=auto --group-directories-first'
+alias la='ls -lAh --color=auto --group-directories-first'
+alias l='ls -CF --color=auto --group-directories-first'
+alias l.='ls -d .* --color=auto --group-directories-first'
+alias lt='ls -lth --color=auto --group-directories-first'
+alias tree='tree -C'
 
-# Check the window size after each command
-shopt -s checkwinsize
+# Safety
+alias rm='rm -I --preserve-root'
+alias mv='mv -i'
+alias cp='cp -i'
+alias ln='ln -i'
 
-# Set history length
-HISTSIZE=1000
-HISTFILESIZE=2000
+# Arch Linux
+alias update='sudo pacman -Syu'
+alias install='sudo pacman -S'
+alias remove='sudo pacman -Rns'
+alias search='pacman -Ss'
+alias orphans='pacman -Qtdq'
+alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+alias pkg-info='pacman -Qi'
+alias pkg-list='pacman -Qqe'
 
-# Ignore duplicate commands and commands starting with space
-HISTCONTROL=ignoreboth
+# Quick edits
+alias bashrc='nvim ~/.bashrc'
+alias vimrc='nvim ~/.vimrc'
+alias nvimrc='nvim ~/.config/nvim/init.vim'
 
-# ===== CUSTOM FUNCTIONS =====
-# Quick directory navigation with better listing
-cdl() {
-    cd "$@" && ll
-}
+# System
+alias df='df -h'
+alias du='du -h'
+alias free='free -h'
+alias psgrep='ps aux | grep -v grep | grep -i'
+alias mkdir='mkdir -pv'
 
-# Extract various archive types
+# Network
+alias ports='netstat -tulanp'
+alias myip='curl ifconfig.me && echo'
+
+# Green-themed aliases
+alias plant='echo "🌱 Your system is growing beautifully!"'
+alias garden='echo "🌸 Digital garden well maintained!"'
+alias grow='echo "📈 Growing stronger every day!"'
+
+# ===== FUNCTIONS =====
+mkcd() { mkdir -p "$1" && cd "$1"; }
+
 extract() {
-    if [ -f "$1" ] ; then
+    if [ -f "$1" ]; then
         case "$1" in
             *.tar.bz2) tar xjf "$1" ;;
-            *.tar.gz) tar xzf "$1" ;;
-            *.bz2) bunzip2 "$1" ;;
-            *.rar) unrar x "$1" ;;
-            *.gz) gunzip "$1" ;;
-            *.tar) tar xf "$1" ;;
-            *.tbz2) tar xjf "$1" ;;
-            *.tgz) tar xzf "$1" ;;
-            *.zip) unzip "$1" ;;
-            *.Z) uncompress "$1" ;;
-            *.7z) 7z x "$1" ;;
-            *) echo "'$1' cannot be extracted via extract()" ;;
+            *.tar.gz)  tar xzf "$1" ;;
+            *.bz2)     bunzip2 "$1" ;;
+            *.rar)     unrar x "$1" ;;
+            *.gz)      gunzip "$1" ;;
+            *.tar)     tar xf "$1" ;;
+            *.tbz2)    tar xjf "$1" ;;
+            *.tgz)     tar xzf "$1" ;;
+            *.zip)     unzip "$1" ;;
+            *.Z)       uncompress "$1" ;;
+            *.7z)      7z x "$1" ;;
+            *)         echo "'$1' cannot be extracted via extract()" ;;
         esac
     else
         echo "'$1' is not a valid file"
     fi
 }
 
-# Colorful man pages
-export LESS_TERMCAP_mb=$'\e[1;32m'
-export LESS_TERMCAP_md=$'\e[1;32m'
+# Calculator
+calc() { echo "$*" | bc -l; }
+
+# Weather with green colors
+weather() { curl -s "wttr.in/${1:-}?F" | head -7; }
+
+# Directory size
+dsize() { du -h --max-depth=1 "$@" | sort -h; }
+
+# Create backup
+backup() { cp -r "$1" "$1.bak"; }
+
+# Green-themed function
+eco() {
+    echo "${GREEN_LIGHT}♻️  Eco-friendly computing tips:"
+    echo "  • Use 'powerprofilesctl set power-saver' for battery life"
+    echo "  • Close unused applications to save resources"
+    echo "  • Consider using lightweight alternatives${RESET}"
+}
+
+# ===== ENVIRONMENT =====
+export EDITOR=nvim
+export VISUAL=nvim
+export BROWSER=firefox
+export TERMINAL=alacritty
+
+export HISTSIZE=100000
+export HISTFILESIZE=200000
+export HISTCONTROL=ignoreboth:erasedups
+export HISTIGNORE="ls:ll:la:l:cd:pwd:exit:clear:history"
+
+# Color for man pages using green theme
+export LESS_TERMCAP_mb=$'\e[1;32m'    # Green
+export LESS_TERMCAP_md=$'\e[1;32m'    # Green
 export LESS_TERMCAP_me=$'\e[0m'
 export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_so=$'\e[01;33m'   # Yellow (for contrast)
 export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[1;4;31m'
+export LESS_TERMCAP_us=$'\e[1;4;36m'  # Teal underline
+
+# ===== COMPLETION =====
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
+# ===== TERMINAL BEHAVIOR =====
+set -o vi
+bind 'set completion-ignore-case on'
+bind 'set show-all-if-ambiguous on'
+bind 'set menu-complete-display-prefix on'
+
+# Enable color support for ls
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+
+# Custom LS_COLORS for green theme
+export LS_COLORS="di=1;32:ln=38;5;30:so=38;5;35:pi=38;5;148:ex=1;32:bd=38;5;70:cd=38;5;37:su=38;5;28:sg=38;5;64:tw=38;5;29:ow=38;5;35"
+
+# FZF integration if available
+if [ -f /usr/share/fzf/key-bindings.bash ]; then
+    source /usr/share/fzf/key-bindings.bash
+    source /usr/share/fzf/completion.bash
+    export FZF_DEFAULT_OPTS='--color=bg+:#e8f5e8,bg:#f5fff5,spinner:#40a02b,hl:#179299 --color=fg:#4c4f69,header:#179299,info:#40a02b,pointer:#40a02b --color=marker:#40a02b,fg+:#4c4f69,prompt:#40a02b,hl+:#179299'
+fi
