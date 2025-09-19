@@ -14,6 +14,7 @@ bspc config focused_border_color "#595959"
 bspc config normal_border_color "#595959"
 bspc config top_padding 1
 bspc config bottom_padding 20
+bspc config font "FiraCode Nerd Font Mono:size=7:style=Regular"
 
 sxhkd &
 polybar &
