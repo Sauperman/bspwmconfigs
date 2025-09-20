@@ -34,6 +34,10 @@ super + space
 super + f
     bspc node -t fullscreen
 
+# Switch to previous window (reverse window focus)
+super + shift + Tab
+    bspc node -f prev.local.!hidden.window
+
 # ========================
 # FLOATING WINDOW MOVEMENT (ARROWS)
 # ========================
