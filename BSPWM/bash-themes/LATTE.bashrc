@@ -3,37 +3,35 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# ===== CATPPUCCIN LATTE LIGHT THEME =====
-# Base colors (Catppuccin Latte)
-ROSEWATER='\[\033[38;5;217m\]'   # #dc8a78
-FLAMINGO='\[\033[38;5;216m\]'    # #dd7878
-PINK='\[\033[38;5;212m\]'        # #ea76cb
-MAUVE='\[\033[38;5;141m\]'       # #8839ef
-RED='\[\033[38;5;203m\]'         # #d20f39
-MAROON='\[\033[38;5;167m\]'      # #e64553
-PEACH='\[\033[38;5;215m\]'       # #fe640b
-YELLOW='\[\033[38;5;221m\]'      # #df8e1d
-GREEN='\[\033[38;5;114m\]'       # #40a02b
-TEAL='\[\033[38;5;79m\]'         # #179299
-SKY='\[\033[38;5;74m\]'          # #04a5e5
-SAPPHIRE='\[\033[38;5;68m\]'     # #209fb5
-BLUE='\[\033[38;5;69m\]'         # #1e66f5
-LAVENDER='\[\033[38;5;141m\]'    # #7287fd'
+# ===== BLUE TO DARK GRADIENT THEME =====
+# Gradient colors from #def4ff to darkest
+LIGHT_BLUE='\[\033[38;5;195m\]'    # #def4ff (lightest blue)
+BLUE_2='\[\033[38;5;153m\]'        # #c9e6ff
+BLUE_3='\[\033[38;5;111m\]'        # #a8d8ff
+BLUE_4='\[\033[38;5;75m\]'         # #7ebfff
+BLUE_5='\[\033[38;5;69m\]'         # #5f9eff
+BLUE_6='\[\033[38;5;63m\]'         # #4a7bff
+BLUE_7='\[\033[38;5;57m\]'         # #3a5feb
+BLUE_8='\[\033[38;5;55m\]'         # #2a45d1
+BLUE_9='\[\033[38;5;54m\]'         # #1e32b8
+DARK_BLUE='\[\033[38;5;53m\]'      # #0f1f9c
+DARKER_BLUE='\[\033[38;5;52m\]'    # #08156e
+DARKEST='\[\033[38;5;17m\]'        # #00002a (almost black with blue tint)
 
-# Text colors
-TEXT='\[\033[38;5;239m\]'        # #4c4f69 (dark gray)
-SUBTEXT1='\[\033[38;5;245m\]'    # #5c5f77 (medium gray)
-SUBTEXT0='\[\033[38;5;247m\]'    # #6c6f85 (light gray)
+# Accent colors that work with the gradient
+CYAN='\[\033[38;5;87m\]'          # #5fffff (bright cyan)
+TEAL='\[\033[38;5;43m\]'          # #00d7d7 (vibrant teal)
+PURPLE='\[\033[38;5;141m\]'       # #a873ff (soft purple)
+PINK='\[\033[38;5;213m\]'         # #ff7aff (bright pink)
+RED='\[\033[38;5;203m\]'          # #ff5f5f (coral red)
+GREEN='\[\033[38;5;84m\]'         # #5fff87 (mint green)
+YELLOW='\[\033[38;5;227m\]'       # #ffff5f (lemon yellow)
+ORANGE='\[\033[38;5;215m\]'       # #ffaf5f (warm orange)
 
-# Surface colors (light backgrounds)
-SURFACE2='\[\033[38;5;251m\]'    # #9ca0b0 (very light gray)
-SURFACE1='\[\033[38;5;253m\]'    # #acb0be (off-white)
-SURFACE0='\[\033[38;5;255m\]'    # #ccd0da (white)
-
-# Base colors (light backgrounds)
-BASE='\[\033[38;5;231m\]'        # #eff1f5 (bright white)
-MANTLE='\[\033[38;5;255m\]'      # #e6e9ef (white)
-CRUST='\[\033[38;5;254m\]'       # #dce0e8 (pale white)
+# Text colors for different background intensities
+TEXT_LIGHT='\[\033[38;5;234m\]'   # #1c1c1c (dark gray for light backgrounds)
+TEXT_MEDIUM='\[\033[38;5;250m\]'  # #bcbcbc (light gray for medium backgrounds)
+TEXT_DARK='\[\033[38;5;255m\]'    # #ffffff (white for dark backgrounds)
 
 # Formatting
 BOLD='\[\033[1m\]'
@@ -67,21 +65,21 @@ set_prompt() {
     local git_branch="$(parse_git_branch)"
     local git_status_indicator="$(git_status)"
 
-    # Single line prompt with brackets - optimized for light background
-    PS1="${BOLD}${BLUE}[${exit_code}${BLUE}]${RESET}"
-    PS1+="${BOLD}${MAUVE} ${SKY}\u${SURFACE2}@${TEAL}\h${RESET}"
-    PS1+="${BOLD}${LAVENDER} ${BLUE}[\w]${RESET}"
+    # Gradient prompt that transitions from light to dark
+    PS1="${BOLD}${BLUE_4}[${exit_code}${BLUE_4}]${RESET}"
+    PS1+="${BOLD}${BLUE_6} ${BLUE_3}\u${BLUE_5}@${BLUE_7}\h${RESET}"
+    PS1+="${BOLD}${BLUE_10} [${TEXT_DARK}\w${BLUE_8}]${RESET}"
 
     # Git info if in repo
     if [ -n "$git_branch" ]; then
-        PS1+="${BOLD}${MAUVE} ${PINK}${git_branch}${git_status_indicator}${RESET}"
+        PS1+="${BOLD}${BLUE_9} ${PURPLE}${git_branch}${git_status_indicator}${RESET}"
     fi
 
-    # 4-color dots indicator
-    PS1+="${BOLD}${MAUVE}•${BLUE}•${SKY}•${TEAL}•${RESET}"
+    # Gradient dots showing the color progression
+    PS1+="${BOLD}${BLUE_10}•${BLUE_10}•${BLUE_7}•${BLUE_9}•${DARKEST}•${RESET}"
 
-    # Prompt character (gradient effect)
-    PS1+="${BOLD}${MAUVE}❯${BLUE}❯${SKY}❯${RESET} "
+    # Gradient prompt character
+    PS1+="${BOLD}${BLUE_5}❯${BLUE_7}❯${BLUE_9}❯${RESET} "
 }
 
 PROMPT_COMMAND=set_prompt
@@ -168,7 +166,7 @@ extract() {
 # Calculator
 calc() { echo "$*" | bc -l; }
 
-# Weather with catppuccin colors
+# Weather
 weather() { curl -s "wttr.in/${1:-}?F" | head -7; }
 
 # Directory size
@@ -188,14 +186,14 @@ export HISTFILESIZE=200000
 export HISTCONTROL=ignoreboth:erasedups
 export HISTIGNORE="ls:ll:la:l:cd:pwd:exit:clear:history"
 
-# Color for man pages using Catppuccin Latte colors
-export LESS_TERMCAP_mb=$'\e[1;35m'    # Pink
-export LESS_TERMCAP_md=$'\e[1;34m'    # Blue
+# Color for man pages using blue gradient
+export LESS_TERMCAP_mb=$'\e[1;38;5;213m'    # Pink
+export LESS_TERMCAP_md=$'\e[1;38;5;75m'     # Medium blue
 export LESS_TERMCAP_me=$'\e[0m'
 export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[01;33m'   # Yellow
+export LESS_TERMCAP_so=$'\e[1;38;5;227m'    # Yellow
 export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[1;4;36m'  # Teal underline
+export LESS_TERMCAP_us=$'\e[1;4;38;5;87m'   # Cyan underline
 
 # ===== COMPLETION =====
 if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -215,15 +213,15 @@ if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
-# Custom LS_COLORS for Catppuccin Latte light theme
-export LS_COLORS="di=1;34:ln=38;5;68:so=38;5;212:pi=38;5;215:ex=1;32:bd=38;5;69:cd=38;5;74:su=38;5;203:sg=38;5;114:tw=38;5;79:ow=38;5;141"
+# Custom LS_COLORS for blue gradient theme
+export LS_COLORS="di=38;5;75:ln=38;5;111:so=38;5;213:pi=38;5;215:ex=38;5;84:bd=38;5;69:cd=38;5;63:su=38;5;203:sg=38;5;84:tw=38;5;43:ow=38;5;141"
 
 # FZF integration if available
 if [ -f /usr/share/fzf/key-bindings.bash ]; then
     source /usr/share/fzf/key-bindings.bash
     source /usr/share/fzf/completion.bash
-    export FZF_DEFAULT_OPTS='--color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 --color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78 --color=marker:#dc8a78,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39'
+    export FZF_DEFAULT_OPTS='--color=bg+:#1e32b8,bg:#00002a,spinner:#7ebfff,hl:#ff5f5f --color=fg:#ffffff,header:#ff5f5f,info:#a873ff,pointer:#7ebfff --color=marker:#7ebfff,fg+:#ffffff,prompt:#a873ff,hl+:#ff5f5f'
 fi
 
-# Set terminal background to light (optional - depends on terminal)
-# echo -ne '\033]11;#eff1f5\007'  # Sets background to Latte base color
+# Set terminal background gradient (optional - may not work in all terminals)
+# echo -ne '\033]11;#00002a\007'  # Sets background to darkest blue
