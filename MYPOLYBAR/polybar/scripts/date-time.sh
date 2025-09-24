@@ -10,7 +10,7 @@ TIME_COLOR="#c7caff"
 # Font Awesome icons
 DAY_ICON=""      # fa-calendar
 MONTH_ICON=""    # fa-calendar-o
-DATE_ICON=""     # fa-calendar-day
+DATE_ICON=""     # fa-calendar-day
 YEAR_ICON=""     # fa-calendar-alt
 TIME_ICON=""     # fa-clock
 
