@@ -8,7 +8,7 @@ DOT_COLOR="#00aaff"
 EATEN_COLORS=("#00ff08" "#ff6b6b" "#feca57" "#96ceb4" "#4ecdc4")  # Green, Red, Yellow, Green, Teal
 
 # Pacman frames (Font Awesome icons)
-PACMAN_FRAMES=("" "" "" "")
+PACMAN_FRAMES=("" "" "" "")
 DOT=""
 EATEN_DOT=""  # Keep as solid circle but change color
 
@@ -48,9 +48,9 @@ while true; do
         if [ $dots_eaten -eq $DOTS_COUNT ] || [ $dots_eaten -eq 0 ]; then
             direction=$((direction * -1))
             if [ $direction -eq -1 ]; then
-                PACMAN_FRAMES=("" "" "" "")
+                PACMAN_FRAMES=("" "" "" "")
             else
-                PACMAN_FRAMES=("" "" "" "")
+                PACMAN_FRAMES=("" "" "" "")
             fi
         fi
     fi
