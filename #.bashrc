@@ -1,127 +1,70 @@
-# Clean Bash Prompt with Live System Monitoring with Emoji
+# ~/.bashrc - Minimal Catppuccin Edition
+[[ $- != *i* ]] && return
 
-# Modern Color Theme - Professional and easy on the eyes
-USER_COLOR='\[\033[38;5;114m\]'      # Soft green for username
-HOST_COLOR='\[\033[38;5;180m\]'      # Warm tan for hostname
-TIME_COLOR='\[\033[38;5;183m\]'      # Lavender for time
-DIR_COLOR='\[\033[38;5;223m\]'       # Cream for directory
-TEAL_COLOR='\[\033[38;5;30m\]'       # Dark teal for </> text and brackets
-CPU_COLOR='\[\033[38;5;117m\]'       # Light blue for CPU
-RAM_COLOR='\[\033[38;5;218m\]'       # Pink for RAM
-GIT_COLOR='\[\033[38;5;219m\]'       # Light purple for git
-SUCCESS_COLOR='\[\033[38;5;120m\]'   # Bright green for success
-ERROR_COLOR='\[\033[38;5;203m\]'     # Soft red for error
-ACCENT_COLOR='\[\033[38;5;245m\]'    # Gray for separators
+# ===== CATPPUCCIN COLORS (Minimal Set) =====
+PINK='\[\033[38;5;212m\]'
+MAUVE='\[\033[38;5;183m\]'
+RED='\[\033[38;5;203m\]'
+GREEN='\[\033[38;5;150m\]'
+TEAL='\[\033[38;5;115m\]'
+SKY='\[\033[38;5;117m\]'
+BLUE='\[\033[38;5;105m\]'
+LAVENDER='\[\033[38;5;183m\]'
+BASE='\[\033[38;5;234m\]'
+BOLD='\[\033[1m\]'
 RESET='\[\033[0m\]'
 
-# Function to get CPU usage (cached for performance)
-get_cpu_usage() {
-    # Cache result for 2 seconds to prevent slowdown
-    local cache_file="/tmp/cpu_usage_cache"
-    local current_time=$(date +%s)
-    local cache_time=0
-    local cached_value=""
+# ===== ULTRA-MINIMAL PROMPT =====
+set_prompt() {
+    local exit_icon=$([ $? -eq 0 ] && echo "${GREEN}λ" || echo "${RED}λ")
+    local git_info=$(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/  \1/')
 
-    if [ -f "$cache_file" ]; then
-        cache_time=$(stat -c %Y "$cache_file" 2>/dev/null || stat -f %m "$cache_file")
-        cached_value=$(cat "$cache_file")
-    fi
-
-    if [ $((current_time - cache_time)) -lt 2 ]; then
-        echo "$cached_value"
-        return
-    fi
-
-    # Calculate fresh CPU usage
-    local cpu_usage=$(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}')
-    local rounded_usage=$(printf "%.0f" "$cpu_usage")
-    echo "$rounded_usage" > "$cache_file"
-    echo "$rounded_usage"
+    PS1="${BOLD}${exit_icon} ${BLUE}\W"
+    [ -n "$git_info" ] && PS1+="${MAUVE}${git_info}"
+    PS1+="${RESET} ${LAVENDER}❯${RESET} "
 }
+PROMPT_COMMAND=set_prompt
 
-# Function to get RAM usage (cached for performance)
-get_ram_usage() {
-    # Cache result for 2 seconds
-    local cache_file="/tmp/ram_usage_cache"
-    local current_time=$(date +%s)
-    local cache_time=0
-    local cached_value=""
-
-    if [ -f "$cache_file" ]; then
-        cache_time=$(stat -c %Y "$cache_file" 2>/dev/null || stat -f %m "$cache_file")
-        cached_value=$(cat "$cache_file")
-    fi
-
-    if [ $((current_time - cache_time)) -lt 2 ]; then
-        echo "$cached_value"
-        return
-    fi
-
-    # Calculate fresh RAM usage
-    local total_mem=$(free -m | awk '/Mem:/ {print $2}')
-    local used_mem=$(free -m | awk '/Mem:/ {print $3}')
-    local ram_usage=$(( (used_mem * 100) / total_mem ))
-    echo "$ram_usage" > "$cache_file"
-    echo "$ram_usage"
-}
-
-# Function to format system info with color coding
-system_info() {
-    local cpu=$(get_cpu_usage)
-    local ram=$(get_ram_usage)
-
-    # Color code based on usage levels
-    local cpu_color=$CPU_COLOR
-    [ "$cpu" -gt 70 ] && cpu_color='\[\033[38;5;221m\]'  # Yellow for high usage
-    [ "$cpu" -gt 90 ] && cpu_color='\[\033[38;5;203m\]'  # Red for very high usage
-
-    local ram_color=$RAM_COLOR
-    [ "$ram" -gt 70 ] && ram_color='\[\033[38;5;221m\]'  # Yellow for high usage
-    [ "$ram" -gt 90 ] && ram_color='\[\033[38;5;203m\]'  # Red for very high usage
-
-    echo -e "${cpu_color}🧠 CPU:${cpu}%${ACCENT_COLOR}|${ram_color}💾 RAM:${ram}%${RESET}"
-}
-
-# Git branch info
-git_branch() {
-    local branch=$(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
-    if [ -n "$branch" ]; then
-        echo -e "${GIT_COLOR}🌿 ${branch}${RESET}"
-    fi
-}
-
-# Main prompt function
-set_bash_prompt() {
-    local exit_code=$?
-    local exit_color=$SUCCESS_COLOR
-    [ $exit_code -ne 0 ] && exit_color=$ERROR_COLOR
-
-    PS1="${ACCENT_COLOR}╭─${RESET} ${USER_COLOR}\u${RESET}${ACCENT_COLOR}@${HOST_COLOR}🐧 \h${RESET} ${ACCENT_COLOR}∙${RESET} ${TIME_COLOR}🕒 \t${RESET} ${ACCENT_COLOR}∙${RESET} ${TEAL_COLOR}</>${RESET}"
-    PS1+="\n${ACCENT_COLOR}╰─${RESET}${TEAL_COLOR}[${RESET} ${DIR_COLOR}📁 \w${RESET} ${TEAL_COLOR}]${RESET} \$(git_branch)"
-    PS1+="\n${exit_color}➜ ${RESET}"
-}
-
-PROMPT_COMMAND='set_bash_prompt'
-
-# Set window title
-case "$TERM" in
-    xterm*|rxvt*|alacritty*|kitty*)
-        PROMPT_COMMAND="$PROMPT_COMMAND; echo -ne '\033]0;${USER}@${HOSTNAME%%.*}: ${PWD/#$HOME/\~}\007'"
-        ;;
-esac
-
-# System monitoring aliases
-alias cpuwatch='watch -n 1 "echo \\\"🧠 CPU: \$(get_cpu_usage)%\\\"; echo \\\"💾 RAM: \$(get_ram_usage)%\\\""'
-alias sysstats='echo -e "🧠 CPU: $(get_cpu_usage)%\\n💾 RAM: $(get_ram_usage)%"'
-
-# Enhanced ls colors
-export LS_COLORS='di=1;36:ln=1;35:so=1;32:pi=1;33:ex=1;31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
-alias ls='ls --color=auto'
-alias ll='ls -lha --group-directories-first'
-alias lt='ls -lhat --group-directories-first'
-
-# Quick navigation
+# ===== ESSENTIAL ALIASES =====
+alias ls='ls --color=auto --group-directories-first'
+alias ll='ls -lh'
+alias la='ls -lAh'
+alias grep='grep --color=auto'
+alias rm='rm -I'
+alias cp='cp -i'
+alias mv='mv -i'
 alias ..='cd ..'
 alias ...='cd ../..'
-alias .3='cd ../../..'
-alias .4='cd ../../../..'
+alias ~='cd ~'
+alias c='clear'
+alias h='history'
+
+# Quick edits
+alias v='nvim'
+alias brc='nvim ~/.bashrc && source ~/.bashrc'
+
+# Arch shortcuts
+alias update='sudo pacman -Syu'
+alias install='sudo pacman -S'
+alias remove='sudo pacman -Rns'
+
+# ===== KEY FUNCTIONS =====
+mkcd() { mkdir -p "$1" && cd "$1"; }
+cl() { cd "$1" && ls; }
+g() { grep -i "$1" *; }
+
+# ===== ENVIRONMENT =====
+export EDITOR=nvim
+export VISUAL=nvim
+export HISTSIZE=5000
+export HISTFILESIZE=10000
+export HISTCONTROL=ignoreboth:erasedups
+
+# Vi mode with quick escape
+set -o vi
+bind 'set show-mode-in-prompt on'
+bind 'set vi-cmd-mode-string "\1\033[2;35m\2[N]\1\033[0m\2 "'
+bind 'set vi-ins-mode-string "\1\033[2;36m\2[I]\1\033[0m\2 "'
+
+# FZF if available
+[ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
