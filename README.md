@@ -2,7 +2,7 @@
 
 # DEPENDENCIES 
 .
-sudo pacman -S bspwm sxhkd polybar xterm picom rofi kitty scrot nm-connection-editor brightnessctl pamixer ffmpeg xorg-server xorg-xinit xorg-xrandr xf86-video-intel xorg-server xorg-apps xorg-xinit xorg-xkill xorg-xset xorg-xrandr xorg-xrdb xorg-xprop libqalculate intel-gpu-tools ffmpeg mpv xf86-video-fbdev xorg-xbacklight dmenu breeze-icons git nano curl wget less rust net-tools htop gwenview spectacle mplayer ttf-hack-nerd ttf-firacode-nerd papirus-icon-theme bc power-profiles-daemon python-gobject python unzip unrar p7zip ufw ttc-iosevka adobe-source-han-sans-jp-fonts feh stalonetray
+sudo pacman -S bspwm sxhkd polybar xterm picom rofi kitty scrot nm-connection-editor brightnessctl pamixer ffmpeg xorg-server xorg-xinit xorg-xrandr xf86-video-intel xorg-server xorg-apps xorg-xinit xorg-xkill xorg-xset xorg-xrandr xorg-xrdb xorg-xprop libqalculate intel-gpu-tools ffmpeg mpv xf86-video-fbdev xorg-xbacklight dmenu breeze-icons git nano curl wget less rust net-tools htop gwenview spectacle mplayer ttf-hack-nerd ttf-firacode-nerd papirus-icon-theme bc power-profiles-daemon python-gobject python unzip unrar p7zip ufw ttc-iosevka adobe-source-han-sans-jp-fonts feh stalonetray ttf-font-awesome ttf-nerd-fonts-symbols-common ttf-nerd-fonts-symbols-mono ttf-dejavu ttf-liberation noto-fonts noto-fonts-emoji
 
 #YAY
 .
@@ -12,7 +12,7 @@ makepkg -si --noconfirm
 
 #YAY dependencies
 .
-yay -S wlogout nm-applet ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono xwinwrap-git noto-fonts-emoji otf-ipafont ttf-jetbrains-mono
+yay -S wlogout nm-applet ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono xwinwrap-git noto-fonts-emoji otf-ipafont ttf-jetbrains-mono nerd-fonts-iosevka ttf-siji adobe-source-han-sans-jp-fonts
 .
 
 
@@ -78,11 +78,4 @@ systemctl --user enable --now pipewire pipewire-pulse wireplumber
 
 ![Description of the screenshot](green1.png)
 ![Description of the screenshot](green2.png)
-
-# MYPOLY-FONTS
-# Install essential fonts
-sudo pacman -S ttf-font-awesome ttf-nerd-fonts-symbols-common ttf-nerd-fonts-symbols-mono ttf-dejavu ttf-liberation noto-fonts noto-fonts-emoji
-
-# Install from AUR
-yay -S nerd-fonts-iosevka ttf-siji adobe-source-han-sans-jp-fonts
 
