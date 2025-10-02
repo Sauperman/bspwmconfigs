@@ -1,0 +1,232 @@
+# ======================
+# TERMINAL & APPS
+# ======================
+"xterm"
+    super + t
+
+"konsole"
+    super + m + t
+
+"dmenu_run"
+    super + d
+
+"rofi -show drun"
+    super + r
+
+"dolphin"
+    super + e
+
+"wlogout"
+    super + n
+
+"feh --bg-fill --randomize ~/.config/wallpaper/*"
+    super + z
+
+# ========================
+# WINDOW MANAGEMENT
+# ========================
+
+# Toggle Float/Tile
+"bspc node -t ~floating"
+    super + space
+
+# Fullscreen
+"bspc node -t fullscreen"
+    super + f
+
+# Switch to previous window (reverse window focus)
+"bspc node -f prev.local.!hidden.window"
+    super + shift + Tab
+
+# ========================
+# FLOATING WINDOW MOVEMENT (ARROWS)
+# ========================
+
+# Move Floating Windows (20px) - Left
+"if [ $(bspc query -N -n focused.floating) ]; then bspc node -v -20 0; fi"
+    super + shift + Left
+
+# Move Floating Windows (20px) - Down
+"if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 0 20; fi"
+    super + shift + Down
+
+# Move Floating Windows (20px) - Up
+"if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 0 -20; fi"
+    super + shift + Up
+
+# Move Floating Windows (20px) - Right
+"if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 20 0; fi"
+    super + shift + Right
+
+# Precise Movement (5px) - Left
+"if [ $(bspc query -N -n focused.floating) ]; then bspc node -v -5 0; fi"
+    super + control + shift + Left
+
+# Precise Movement (5px) - Down
+"if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 0 5; fi"
+    super + control + shift + Down
+
+# Precise Movement (5px) - Up
+"if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 0 -5; fi"
+    super + control + shift + Up
+
+# Precise Movement (5px) - Right
+"if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 5 0; fi"
+    super + control + shift + Right
+
+# Snap to Edges - Left
+"if [ $(bspc query -N -n focused.floating) ]; then bspc node -v -1000 0; fi"
+    super + m + Left
+
+# Snap to Edges - Down
+"if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 0 1000; fi"
+    super + m + Down
+
+# Snap to Edges - Up
+"if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 0 -1000; fi"
+    super + m + Up
+
+# Snap to Edges - Right
+"if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 1000 0; fi"
+    super + m + Right
+
+# ========================
+# WORKSPACE CONTROLS
+# ========================
+
+# Switch Workspaces 1-9
+"bspc desktop -f 1"
+    super + 1
+
+"bspc desktop -f 2"
+    super + 2
+
+"bspc desktop -f 3"
+    super + 3
+
+"bspc desktop -f 4"
+    super + 4
+
+"bspc desktop -f 5"
+    super + 5
+
+"bspc desktop -f 6"
+    super + 6
+
+"bspc desktop -f 7"
+    super + 7
+
+"bspc desktop -f 8"
+    super + 8
+
+"bspc desktop -f 9"
+    super + 9
+
+# Move Windows to Workspaces 1-9
+"bspc node -d 1"
+    super + shift + 1
+
+"bspc node -d 2"
+    super + shift + 2
+
+"bspc node -d 3"
+    super + shift + 3
+
+"bspc node -d 4"
+    super + shift + 4
+
+"bspc node -d 5"
+    super + shift + 5
+
+"bspc node -d 6"
+    super + shift + 6
+
+"bspc node -d 7"
+    super + shift + 7
+
+"bspc node -d 8"
+    super + shift + 8
+
+"bspc node -d 9"
+    super + shift + 9
+
+# ======================
+# WM CONTROL
+# ======================
+
+# Reload xbindkeys (replaces sxhkd reload)
+"pkill -HUP xbindkeys"
+    super + Escape
+
+# Restart/reload bspwm
+"bspc wm -r"
+    super + m + Escape
+
+# Close window
+"bspc node -c"
+    super + q
+
+# Kill window
+"bspc node -k"
+    super + shift + q
+
+# Toggle layout (tiled/monocle)
+"bspc desktop -l next"
+    super + m
+
+# Toggle floating (duplicate - already defined above)
+#"bspc node -t ~floating"
+#    super + shift + space
+
+# Fullscreen (duplicate - already defined above)
+#"bspc node -t fullscreen"
+#    super + f
+
+# ======================
+# UTILITY KEYS
+# ======================
+
+# Screenshot
+"scrot ~/Pictures/%Y-%m-%d-%H-%M-%S.png"
+    Print
+
+# Volume controls
+"pamixer --toggle-mute"
+    F1
+
+"pamixer --decrease 5"
+    F2
+
+"pamixer --increase 5"
+    F3
+
+# Brightness controls
+"brightnessctl set 5%-"
+    F11
+
+"brightnessctl set +5%"
+    F12
+
+# ======================
+# NODE STATES (flags)
+# ======================
+
+"bspc node -g marked"
+    super + ctrl + m
+
+"bspc node -g locked"
+    super + ctrl + x
+
+"bspc node -g sticky"
+    super + ctrl + y
+
+"bspc node -g private"
+    super + ctrl + z
+
+# Swap with biggest window
+"bspc node -s biggest.window"
+    super + g
+
+# Send marked node to preselected
+"bspc node newest.marked.local -n newest.!automatic.local"
+    super + y
