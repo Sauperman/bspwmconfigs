@@ -1,0 +1,203 @@
+configuration {
+    show-icons: true;
+    font: "JetBrains Mono 12";
+    icon-theme: "Papirus-Dark";
+
+    display-ssh:    "󰣀 ssh:";
+    display-run:    "󱓞 run:";
+    display-drun:   "󰣖 drun:";
+    display-window: "󱂬 window:";
+    display-combi:  "󰕘 combi:";
+    display-filebrowser: "󰉋 filebrowser:";
+
+    dpi: 90;
+}
+/*******************************************************************************
+ * ROFI Color theme - Pure Black & Charcoal with Papirus Icons
+ * Modified from original by Rasi
+ *******************************************************************************/
+
+* {
+    selected-normal-foreground:  rgba ( 255, 255, 255, 100 % );
+    foreground:                  rgba ( 180, 180, 180, 100 % );
+    normal-foreground:           @foreground;
+    alternate-normal-background: rgba ( 15, 15, 15, 100 % );
+    red:                         rgba ( 255, 90, 90, 100 % );
+    selected-urgent-foreground:  rgba ( 255, 110, 110, 100 % );
+    blue:                        rgba ( 130, 170, 255, 100 % );
+    urgent-foreground:           rgba ( 255, 110, 110, 100 % );
+    alternate-urgent-background: rgba ( 15, 15, 15, 100 % );
+    active-foreground:           rgba ( 110, 210, 255, 100 % );
+    lightbg:                     rgba ( 80, 80, 80, 100 % );
+    selected-active-foreground:  rgba ( 110, 210, 255, 100 % );
+    alternate-active-background: rgba ( 15, 15, 15, 100 % );
+    background:                  rgba ( 0, 0, 0, 100 % );
+    bordercolor:                 rgba ( 25, 25, 25, 100 % );
+    alternate-normal-foreground: @foreground;
+    normal-background:           rgba ( 10, 10, 10, 100 % );
+    lightfg:                     rgba ( 100, 100, 100, 100 % );
+    selected-normal-background:  rgba ( 30, 30, 30, 100 % );
+    border-color:                rgba ( 40, 40, 40, 100 % );
+    spacing:                     2;
+    separatorcolor:              rgba ( 20, 20, 20, 100 % );
+    urgent-background:           rgba ( 10, 10, 10, 100 % );
+    selected-urgent-background:  rgba ( 30, 30, 30, 100 % );
+    alternate-urgent-foreground: @urgent-foreground;
+    background-color:            rgba ( 0, 0, 0, 0 % );
+    alternate-active-foreground: @active-foreground;
+    active-background:           rgba ( 10, 10, 10, 100 % );
+    selected-active-background:  rgba ( 30, 30, 30, 100 % );
+
+    /* Icon settings */
+    icon-size:                   24;
+    horizontal-icon-offset:     10px;
+}
+
+window {
+    background-color: @background;
+    border:           1px;
+    border-color:     rgba ( 40, 40, 40, 100 % );
+    padding:          5;
+}
+
+mainbox {
+    border:  0;
+    padding: 0;
+}
+
+message {
+    border:       1px dash 0px 0px ;
+    border-color: @separatorcolor;
+    padding:      1px ;
+}
+
+textbox {
+    text-color: @foreground;
+}
+
+listview {
+    fixed-height: 0;
+    border:       2px dash 0px 0px ;
+    border-color: @separatorcolor;
+    spacing:      2px ;
+    scrollbar:    true;
+    padding:      2px 0px 0px ;
+}
+
+element {
+    border:  0;
+    padding: 1px ;
+}
+
+element-icon {
+    size: @icon-size;
+    vertical-align: 0.5;
+}
+
+element-text {
+    background-color: inherit;
+    text-color:       inherit;
+    vertical-align:   0.5;
+}
+
+element.normal.normal {
+    background-color: @normal-background;
+    text-color:       @normal-foreground;
+}
+
+element.normal.urgent {
+    background-color: @urgent-background;
+    text-color:       @urgent-foreground;
+}
+
+element.normal.active {
+    background-color: @active-background;
+    text-color:       @active-foreground;
+}
+
+element.selected.normal {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+
+element.selected.urgent {
+    background-color: @selected-urgent-background;
+    text-color:       @selected-urgent-foreground;
+}
+
+element.selected.active {
+    background-color: @selected-active-background;
+    text-color:       @selected-active-foreground;
+}
+
+element.alternate.normal {
+    background-color: @alternate-normal-background;
+    text-color:       @alternate-normal-foreground;
+}
+
+element.alternate.urgent {
+    background-color: @alternate-urgent-background;
+    text-color:       @alternate-urgent-foreground;
+}
+
+element.alternate.active {
+    background-color: @alternate-active-background;
+    text-color:       @alternate-active-foreground;
+}
+
+scrollbar {
+    width:        4px ;
+    border:       0;
+    handle-color: rgba ( 60, 60, 60, 100 % );
+    handle-width: 8px ;
+    padding:      0;
+}
+
+mode-switcher {
+    border:       2px dash 0px 0px ;
+    border-color: @separatorcolor;
+}
+
+button.selected {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+
+inputbar {
+    spacing:    0;
+    text-color: @normal-foreground;
+    padding:    1px ;
+    background-color: @normal-background;
+    border: 1px;
+    border-color: @bordercolor;
+}
+
+case-indicator {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+
+entry {
+    spacing:    0;
+    text-color: @normal-foreground;
+    background-color: @normal-background;
+}
+
+prompt {
+    spacing:    0;
+    text-color: @normal-foreground;
+    background-color: @normal-background;
+}
+
+inputbar {
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+    background-color: @normal-background;
+}
+
+textbox-prompt-colon {
+    expand:     false;
+    str:        ":";
+    margin:     0px 0.3em 0em 0em ;
+    text-color: @normal-foreground;
+    background-color: @normal-background;
+}
