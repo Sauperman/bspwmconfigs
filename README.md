@@ -79,4 +79,10 @@ systemctl --user enable --now pipewire pipewire-pulse wireplumber
 ![Description of the screenshot](green1.png)
 ![Description of the screenshot](green2.png)
 
+# MYPOLY-FONTS
+# Install essential fonts
+sudo pacman -S ttf-font-awesome ttf-nerd-fonts-symbols-common ttf-nerd-fonts-symbols-mono ttf-dejavu ttf-liberation noto-fonts noto-fonts-emoji
+
+# Install from AUR
+yay -S nerd-fonts-iosevka ttf-siji adobe-source-han-sans-jp-fonts
 
