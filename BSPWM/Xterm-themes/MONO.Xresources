@@ -1,0 +1,18 @@
+xterm*faceName: FiraCode Nerd Font Mono
+xterm*faceSize: 14
+xterm*renderFont: true
+xterm*utf8: 2
+xterm*locale: true
+
+! Enable font size adjustment and copy/paste
+XTerm*vt100.translations: #override \
+    Ctrl Shift <Key>equal: larger-vt-font() \n\
+    Ctrl Shift <Key>plus: larger-vt-font() \n\
+    Ctrl Shift <Key>minus: smaller-vt-font() \n\
+    Ctrl Shift <Key>underscore: smaller-vt-font() \n\
+    Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
+
+! Black background, white foreground
+XTerm*background: #000000
+XTerm*foreground: #ffffff
