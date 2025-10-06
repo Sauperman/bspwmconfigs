@@ -1,121 +1,190 @@
-configuration {
-  show-icons: false;
-  font: "JetBrains Mono 12";
-  icon-theme: "Papirus-Dark";
-  modes: [drun, run, window, ssh];
-  dpi: 80;
-}
-
 @theme "default"
 
+configuration {
+	modi: "drun,window,run";
+	width: 40%;
+	show-icons: true;
+	icon-theme: "breeze";
+	lines: 8;
+	fixed-num-lines: true;
+	padding: 3;
+	sidebar-mode: false;
+    font: "FiraCode Nerd Font 9";
+    columns: 1;
+}
+
 * {
-  /* Colors */
-  background-color: #000000;
-  foreground: #ffffff;
-  normal-background: #000000;
-  normal-foreground: #ffffff;
-  selected-background: #292929; /* Changed to #292929 */
-  selected-foreground: #ffffff;
-  urgent-background: #ffffff;
-  urgent-foreground: #ffffff;
-  active-background: #ffffff;
-  active-foreground: #ffffff;
-  alternate-normal-background: #0f0f0f;
-  alternate-normal-foreground: #ffffff;
-  alternate-active-background: #ffffff;
-  alternate-active-foreground: #ffffff;
-  alternate-urgent-background: #ffffff;
-  alternate-urgent-foreground: #ffffff;
+    // Base colors - matching polybar colors
+    bg: #0f1419;
+    bg-alt: #1f2a36;
+    fg: #d8dee9;
+    fg-alt: #7c8a9c;
 
-  /* Spacing */
-  spacing: 2;
-  padding: 2px;
-  border: 0px;
+    // UI colors - using polybar color scheme
+    accent: #7c8a9c;
+    urgent: #bf616a;
+    active: #88c0d0;
 
-  /* Icons */
-  icon-size: 0;
-  horizontal-icon-offset: 0px;
+    background-color: transparent;
+    border-color: #4b5664;
+    separatorcolor: #65737e;
+    spacing: 1;
 }
 
 window {
-  background-color: @background-color;
-  border: 0px;
-  padding: 2px;
-  width: 500px;
+    background-color: @bg;
+    border: 1;
+    border-color: @border-color;
+    border-radius: 4;
+    padding: 3;
+    // Left side positioning without extra margins
+    horizontal-align: 0;
+    vertical-align: 0;
+    margin: 0;
+    width: 350px;
+    height: 400px;
 }
 
 mainbox {
-  children: [inputbar, listview, mode-switcher];
+    spacing: 0;
+    background-color: @bg;
 }
 
 inputbar {
-  children: [prompt, entry];
-  spacing: 5px;
-  padding: 5px;
-  background-color: @normal-background;
+    spacing: 2;
+    padding: 3;
+    border: 0 0 1 0;
+    border-color: @separatorcolor;
+    children: [prompt, entry, case-indicator];
+    background-color: @bg;
 }
 
 prompt {
-  background-color: inherit;
-  text-color: inherit;
+    text-color: @accent;
+    padding: 0 3 0 0;
+    font: "bold 10px";
+    background-color: @bg;
 }
 
 entry {
-  background-color: inherit;
-  text-color: inherit;
-  placeholder: "Type to search...";
+    text-color: @fg;
+    background-color: @bg;
+    border-radius: 2;
+    padding: 3;
+    border: 1;
+    border-color: @border-color;
+    font: "9px";
+}
+
+case-indicator {
+    text-color: @fg-alt;
+    padding: 0 0 0 3;
+    font: "9px";
+    background-color: @bg;
 }
 
 listview {
-  lines: 15;
-  scrollbar: true;
-  spacing: 1px;
-  padding: 1px 0px 0px;
-  dynamic: true;
+    spacing: 1;
+    padding: 2;
+    scrollbar: true;
+    dynamic: true;
+    columns: 1;
+    background-color: @bg;
 }
 
 element {
-  padding: 2px 2px;
-  spacing: 0px;
-  background-color: @normal-background;
-  text-color: @normal-foreground;
+    padding: 3;
+    border-radius: 2;
+    text-color: @fg;
+    background-color: @bg;
+    font: "9px";
 }
 
-element selected {
-  background-color: #292929; /* Now uses #292929 */
-  text-color: @selected-foreground;
+element normal.normal {
+    background-color: @bg;
+    text-color: @fg;
 }
 
-element-icon {
-  size: 0;
-  vertical-align: 0.5;
+element selected.normal {
+    background-color: @accent;
+    text-color: #000000;
 }
 
-element-text {
-  background-color: inherit;
-  text-color: inherit;
-  vertical-align: 0.5;
+element alternate.normal {
+    background-color: @bg;
+    text-color: @fg-alt;
 }
 
-mode-switcher {
-  enabled: true;
-  spacing: 0;
+element active.normal {
+    background-color: @bg;
+    text-color: @fg;
 }
 
-button {
-  padding: 8px;
-  margin: 1px;
-  background-color: @normal-background;
-  text-color: @normal-foreground;
+element selected.active {
+    background-color: @active;
+    text-color: #000000;
 }
 
-button selected {
-  background-color: @selected-background; /* Now uses #292929 */
-  text-color: @selected-foreground;
+element urgent.normal {
+    background-color: @bg;
+    text-color: @urgent;
+}
+
+element selected.urgent {
+    background-color: @urgent;
+    text-color: #000000;
 }
 
 scrollbar {
-  handle-width: 8px;
-  handle-color: #4a4a4a;
-  width: 4px;
+    handle-width: 2;
+    handle-color: @accent;
+}
+
+mode-switcher {
+    spacing: 2;
+    padding: 3;
+    border: 1 0 0 0;
+    border-color: @separatorcolor;
+    background-color: @bg;
+}
+
+button {
+    padding: 2 4;
+    border-radius: 2;
+    text-color: @fg-alt;
+    font: "9px";
+    background-color: @bg;
+}
+
+button normal {
+    background-color: @bg;
+}
+
+button selected {
+    background-color: @accent;
+    text-color: #000000;
+}
+
+textbox {
+    text-color: @fg;
+    font: "9px";
+    background-color: @bg;
+}
+
+message {
+    text-color: @fg;
+    padding: 3;
+    border: 0 0 1 0;
+    border-color: @separatorcolor;
+    font: "9px";
+    background-color: @bg;
+}
+
+// Icon styling
+element-icon {
+    size: 1.0em;
+}
+
+element selected icon {
+    size: 1.0em;
 }
