@@ -1,0 +1,188 @@
+configuration {
+	modi: "drun,calc:qalc,window,run";
+	width: 40%;           // Reduced width to 40% of screen
+	show-icons: true;
+	icon-theme: "papirus";
+	lines: 8;             // Reduced from 10 to 8
+	fixed-num-lines: true;
+	padding: 3;           // Reduced padding
+	sidebar-mode: true;
+    font: "FiraCode Nerd Font 9";  // Slightly smaller font
+    columns: 1;           // Single column for narrower layout
+}
+
+* {
+    // Base colors - matching polybar colors
+    bg: #1a1a1a;          // Polybar background
+    bg-alt: #1a1a1a;      // Changed to match main background
+    fg: #e6e6e6;          // Polybar foreground
+    fg-alt: #b4b4b4;      // Polybar foreground-alt
+
+    // UI colors - using polybar color scheme
+    accent: #b4b4b4;      // Changed from #0099ff to #b4b4b4
+    urgent: #ff0000;      // Polybar alert
+    active: #ff6600;      // Polybar secondary
+
+    background-color: transparent;
+    border-color: #444444;
+    separatorcolor: #666666;  // Polybar foreground-alt-3
+    spacing: 1;
+}
+
+window {
+    background-color: @bg;
+    border: 1;
+    border-color: @border-color;
+    border-radius: 4;
+    padding: 3;           // Reduced padding
+    // Left side positioning without extra margins
+    horizontal-align: 0;
+    vertical-align: 0;
+    margin: 0;
+    width: 350px;         // Fixed width in pixels
+    height: 400px;        // Fixed height in pixels
+}
+
+mainbox {
+    spacing: 0;
+    background-color: @bg;
+}
+
+inputbar {
+    spacing: 2;           // Reduced spacing
+    padding: 3;           // Reduced padding
+    border: 0 0 1 0;
+    border-color: @separatorcolor;
+    children: [prompt, entry, case-indicator];
+    background-color: @bg;
+}
+
+prompt {
+    text-color: @accent;      // Now uses #b4b4b4 for prompt
+    padding: 0 3 0 0;         // Reduced padding
+    font: "bold 10px";        // Smaller font
+    background-color: @bg;
+}
+
+entry {
+    text-color: @fg;
+    background-color: #1a1a1a;
+    border-radius: 2;
+    padding: 3;               // Reduced padding
+    border: 1;
+    border-color: #444444;
+    font: "9px";              // Smaller font
+}
+
+case-indicator {
+    text-color: @fg-alt;
+    padding: 0 0 0 3;         // Reduced padding
+    font: "9px";              // Smaller font
+    background-color: @bg;
+}
+
+listview {
+    spacing: 1;
+    padding: 2;               // Reduced padding
+    scrollbar: true;
+    dynamic: true;
+    columns: 1;               // Single column
+    background-color: @bg;
+}
+
+element {
+    padding: 3;               // Reduced padding
+    border-radius: 2;
+    text-color: @fg;
+    background-color: @bg;
+    font: "9px";              // Smaller font
+}
+
+element normal normal {
+    background-color: @bg;
+    text-color: @fg;
+}
+
+element selected normal {
+    background-color: @accent;  // Now #b4b4b4
+    text-color: #000000;        // Dark text for better contrast
+}
+
+element alternate normal {
+    background-color: #1a1a1a;
+    text-color: @fg-alt;
+}
+
+element active normal {
+    background-color: #1a1a1a;
+    text-color: @fg;
+}
+
+element selected active {
+    background-color: @active;  // Secondary orange
+    text-color: #000000;        // Dark text for better contrast
+}
+
+element urgent normal {
+    background-color: #1a1a1a;
+    text-color: @urgent;        // Bright red text
+}
+
+element selected urgent {
+    background-color: @urgent;  // Bright red
+    text-color: #000000;        // Dark text for contrast
+}
+
+scrollbar {
+    handle-width: 2;
+    handle-color: @accent;      // Now uses #b4b4b4 for scrollbar
+}
+
+mode-switcher {
+    spacing: 2;           // Reduced spacing
+    padding: 3;           // Reduced padding
+    border: 1 0 0 0;
+    border-color: @separatorcolor;
+    background-color: @bg;
+}
+
+button {
+    padding: 2 4;         // Reduced padding
+    border-radius: 2;
+    text-color: @fg-alt;
+    font: "9px";          // Smaller font
+    background-color: @bg;
+}
+
+button normal {
+    background-color: @bg;
+}
+
+button selected {
+    background-color: @accent;  // Now #b4b4b4
+    text-color: #000000;        // Dark text for contrast
+}
+
+textbox {
+    text-color: @fg;
+    font: "9px";          // Smaller font
+    background-color: @bg;
+}
+
+message {
+    text-color: @fg;
+    padding: 3;           // Reduced padding
+    border: 0 0 1 0;
+    border-color: @separatorcolor;
+    font: "9px";          // Smaller font
+    background-color: @bg;
+}
+
+// Icon styling
+element icon {
+    size: 1.0em;          // Smaller icons
+}
+
+element selected icon {
+    size: 1.0em;          // Smaller icons
+}
