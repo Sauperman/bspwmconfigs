@@ -22,7 +22,7 @@ yay -S ttf-iosevka-nerd
 
 
 
-#YAY
+# YAY
 .
 git clone https://aur.archlinux.org/yay.git ~/yay
 cd ~/yay
