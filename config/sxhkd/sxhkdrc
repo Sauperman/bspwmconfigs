@@ -4,7 +4,7 @@
 super + t
     xterm
 
-super + m + t
+super + k
     konsole
 
 super + d
@@ -38,56 +38,41 @@ super + f
 super + shift + Tab
     bspc node -f prev.local.!hidden.window
 
+# Close window
+super + q
+    bspc node -c
+
+# Kill window
+super + shift + q
+    bspc node -k
+
+# Toggle layout (tiled/monocle)
+super + l
+    bspc desktop -l next
+
 # ========================
-# FLOATING WINDOW MOVEMENT (ARROWS)
+# FLOATING WINDOW MOVEMENT
 # ========================
 
-# Move Floating Windows (20px) - Left
-super + shift + {Left}
+# Move Floating Windows (20px) - Arrow keys
+super + shift + {Left,Down,Up,Right}
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v -20 0; fi
-
-# Move Floating Windows (20px) - Down
-super + shift + {Down}
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 0 20; fi
-
-# Move Floating Windows (20px) - Up
-super + shift + {Up}
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 0 -20; fi
-
-# Move Floating Windows (20px) - Right
-super + shift + {Right}
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 20 0; fi
 
-# Precise Movement (5px) - Left
-super + ctrl + shift + {Left}
+# Precise Movement (5px) - Arrow keys
+super + ctrl + shift + {Left,Down,Up,Right}
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v -5 0; fi
-
-# Precise Movement (5px) - Down
-super + ctrl + shift + {Down}
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 0 5; fi
-
-# Precise Movement (5px) - Up
-super + ctrl + shift + {Up}
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 0 -5; fi
-
-# Precise Movement (5px) - Right
-super + ctrl + shift + {Right}
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 5 0; fi
 
-# Snap to Edges - Left
-super + m + {Left}
+# Snap to Edges - Arrow keys
+super + ctrl + {Left,Down,Up,Right}
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v -1000 0; fi
-
-# Snap to Edges - Down
-super + m + {Down}
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 0 1000; fi
-
-# Snap to Edges - Up
-super + m + {Up}
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 0 -1000; fi
-
-# Snap to Edges - Right
-super + m + {Right}
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 1000 0; fi
 
 # ========================
@@ -111,20 +96,8 @@ super + Escape
     pkill -USR1 -x sxhkd
 
 # Restart/reload bspwm
-super + m + Escape
+super + alt + r
     bspc wm -r
-
-# Close window
-super + q
-    bspc node -c
-
-# Kill window
-super + shift + q
-    bspc node -k
-
-# Toggle layout (tiled/monocle)
-super + m
-    bspc desktop -l next
 
 # ======================
 # UTILITY KEYS
@@ -135,20 +108,14 @@ Print
     scrot ~/Pictures/%Y-%m-%d-%H-%M-%S.png
 
 # Volume controls
-{F1}
+{F1,F2,F3}
     pamixer --toggle-mute
-
-{F2}
     pamixer --decrease 5
-
-{F3}
     pamixer --increase 5
 
 # Brightness controls
-{F11}
+{F11,F12}
     brightnessctl set 5%-
-
-{F12}
     brightnessctl set +5%
 
 # ======================
