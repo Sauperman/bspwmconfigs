@@ -32,3 +32,4 @@ xwinwrap -g 1920x1080+0+0 -ni -s -st -sp -b -nf -ov -- mplayer -quiet -loop 0 -n
 #===================#
 
 xwinwrap -debug -g 1920x1080+0+0 -ni -s -st -sp -b -nf -ov -- mplayer -quiet -loop 0 -nosound -framedrop -vo xv  wid %WID ~/Videos/LIVEWALLPAPER/miku.mp4
+mpv --no-audio --loop-file=inf --no-osd-bar --no-input-default-bindings --wid=0 ~/Videos/live_wallpaper.mp4 &
