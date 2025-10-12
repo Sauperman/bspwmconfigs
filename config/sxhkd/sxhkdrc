@@ -55,24 +55,33 @@ super + l
 # ========================
 
 # Move Floating Windows (20px) - Arrow keys
-super + shift + {Left,Down,Up,Right}
+super + shift + Left
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v -20 0; fi
+super + shift + Down
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 0 20; fi
+super + shift + Up
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 0 -20; fi
+super + shift + Right
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 20 0; fi
 
 # Precise Movement (5px) - Arrow keys
-super + ctrl + shift + {Left,Down,Up,Right}
+super + ctrl + shift + Left
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v -5 0; fi
+super + ctrl + shift + Down
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 0 5; fi
+super + ctrl + shift + Up
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 0 -5; fi
+super + ctrl + shift + Right
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 5 0; fi
 
 # Snap to Edges - Arrow keys
-super + ctrl + {Left,Down,Up,Right}
+super + ctrl + Left
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v -1000 0; fi
+super + ctrl + Down
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 0 1000; fi
+super + ctrl + Up
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 0 -1000; fi
+super + ctrl + Right
     if [ $(bspc query -N -n focused.floating) ]; then bspc node -v 1000 0; fi
 
 # ========================
