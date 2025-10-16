@@ -1,0 +1,55 @@
+xterm*faceName: FiraCode Nerd Font Mono
+xterm*faceSize: 15
+xterm*renderFont: true
+xterm*utf8: 2
+xterm*locale: true
+
+! Enable font size adjustment and copy/paste
+XTerm*vt100.translations: #override \
+    Ctrl Shift <Key>equal: larger-vt-font() \n\
+    Ctrl Shift <Key>plus: larger-vt-font() \n\
+    Ctrl Shift <Key>minus: smaller-vt-font() \n\
+    Ctrl Shift <Key>underscore: smaller-vt-font() \n\
+    Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
+
+! --- Retro Tokyo Theme ---
+
+! Dark background (midnight/rainy street)
+XTerm*background: #1C1F2E
+
+! Light, slightly pink/purple foreground (neon glow)
+XTerm*foreground: #C4C3E2
+
+! Black (darkest shadow)
+XTerm*color0: #1C1F2E
+XTerm*color8: #474B64
+
+! Red (neon sign red)
+XTerm*color1: #E95678
+XTerm*color9: #FF7098
+
+! Green (cyberpunk/digital green)
+XTerm*color2: #0EE390
+XTerm*color10: #4BFFB6
+
+! Yellow (bright neon yellow)
+XTerm*color3: #FFDE00
+XTerm*color11: #FFFF4D
+
+! Blue (deep neon blue)
+XTerm*color4: #3E8FEE
+XTerm*color12: #6DAAFF
+
+! Magenta (synthwave/vaporwave pink/purple)
+XTerm*color5: #AD5BEF
+XTerm*color13: #D07EFF
+
+! Cyan (electric blue/cyan)
+XTerm*color6: #00DBE5
+XTerm*color14: #4DFFFF
+
+! White (bright light source)
+XTerm*color7: #C4C3E2
+XTerm*color15: #FFFFFF
+
