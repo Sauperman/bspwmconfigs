@@ -1,0 +1,196 @@
+configuration {
+	modi: "drun,calc:qalc,window,run";
+	width: 35%;
+	show-icons: true;
+	icon-theme: "papirus";
+	lines: 10; /* CHANGED: Now showing 10 lines */
+	fixed-num-lines: true;
+	padding: 2;
+	sidebar-mode: true;
+	font: "FiraCode Nerd Font 9";
+	columns: 1;
+	drun-display-format: "{name}";
+	drun-match-fields: "name,generic,exec";
+}
+
+// Aesthetic Tokyo Night Palette (Enhanced)
+* {
+	// --- Backgrounds ---
+	bg: #1A1B26;        // Deep Blue-Black (Primary Background)
+	bg-alt: #24283B;    // Muted Dark Blue (Alternate/Input Background)
+
+	// --- Foreground/Text ---
+	fg: #C0CAF5;        // Pale Lavender (Primary Text)
+	fg-alt: #9AA5CE;    // Muted Blue-Gray (Secondary/Placeholder Text)
+
+	// --- UI Colors (Muted Accents)
+	accent: #7AA2F7;    // Soft Blue (Primary Accent/Selection Highlight)
+	urgent: #F7768E;    // Muted Red-Pink (Urgent items)
+	active: #9ECE6A;    // Muted Green (Active items)
+
+	background-color: transparent;
+	border-color: #414868;
+	separatorcolor: @border-color;
+	spacing: 0;
+}
+
+window {
+	background-color: @bg;
+	border: 0;
+	border-radius: 10;
+	padding: 10;
+	horizontal-align: 0.5;
+	vertical-align: 0.5;
+	margin: 0;
+	width: 320px;
+	height: 420px; /* Adjusted height to better fit 10 lines */
+}
+
+mainbox {
+	spacing: 0;
+	background-color: @bg;
+}
+
+inputbar {
+	spacing: 6;
+	padding: 8;
+	border: 1px;
+	border-radius: 8;
+	border-color: @bg-alt;
+	children: [prompt, entry, case-indicator];
+	background-color: @bg-alt;
+}
+
+prompt {
+	text-color: @accent;
+	font: "bold 11px";
+	background-color: @bg-alt;
+}
+
+entry {
+	text-color: @fg;
+	background-color: @bg-alt;
+	border-radius: 3;
+	padding: 0 0 0 0;
+	font: "9px";
+}
+
+case-indicator {
+	text-color: @fg-alt;
+	font: "9px";
+	background-color: @bg-alt;
+}
+
+listview {
+	spacing: 4;
+	padding: 10 0 0 0;
+	scrollbar: true;
+	columns: 1;
+	background-color: @bg;
+}
+
+element {
+	padding: 6;
+	border-radius: 5;
+	text-color: @fg;
+	background-color: @bg;
+	font: "9px";
+}
+
+element normal normal {
+	background-color: @bg;
+	text-color: @fg;
+}
+
+element alternate normal {
+	background-color: @bg;
+	text-color: @fg;
+}
+
+element normal active {
+	background-color: @bg-alt;
+	text-color: @fg;
+}
+
+element selected normal {
+	background-color: @accent;
+	text-color: @bg;
+	font: "FiraCode Nerd Font Bold 9";
+}
+
+element active normal {
+	background-color: @bg;
+	text-color: @active;
+}
+
+element selected active {
+	background-color: @active;
+	text-color: @bg;
+}
+
+element urgent normal {
+	background-color: @bg;
+	text-color: @urgent;
+}
+
+element selected urgent {
+	background-color: @urgent;
+	text-color: @bg;
+}
+
+scrollbar {
+	handle-width: 3;
+	handle-color: @fg-alt;
+	padding: 0;
+	border-radius: 5;
+}
+
+mode-switcher {
+	spacing: 4;
+	padding: 8 0 0 0;
+	border: 1 0 0 0;
+	border-color: @separatorcolor;
+	background-color: @bg;
+}
+
+button {
+	padding: 5 8;
+	border-radius: 4;
+	text-color: @fg-alt;
+	font: "9px";
+	background-color: @bg;
+}
+
+button normal {
+	background-color: @bg;
+}
+
+button selected {
+	background-color: @accent;
+	text-color: @bg;
+	font: "bold 9px";
+}
+
+textbox {
+	text-color: @fg;
+	font: "9px";
+	background-color: @bg;
+}
+
+message {
+	text-color: @fg;
+	padding: 4 0 0 0;
+	border: 1 0 0 0;
+	border-color: @separatorcolor;
+	font: "9px";
+	background-color: @bg;
+}
+
+// Icon styling
+element icon {
+	size: 1.1em;
+}
+
+element selected icon {
+	size: 1.1em;
+}
