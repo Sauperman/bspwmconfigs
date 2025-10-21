@@ -1,1 +1,5 @@
-yay -S ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono
+# Drastically reduce microphone volume to 30-40%
+pactl set-source-volume alsa_input.pci-0000_00_1f.3.analog-stereo 30%
+
+# Also reduce base volume (this controls sensitivity)
+pactl set-source-volume alsa_input.pci-0000_00_1f.3.analog-stereo 6554  # 10% in PulseAudio units
