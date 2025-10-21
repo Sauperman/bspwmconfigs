@@ -117,14 +117,17 @@ Print
     scrot ~/Pictures/%Y-%m-%d-%H-%M-%S.png
 
 # Volume controls
-{F1,F2,F3}
+F1
     pamixer --toggle-mute
+F2
     pamixer --decrease 5
+F3
     pamixer --increase 5
 
 # Brightness controls
-{F11,F12}
+F11
     brightnessctl set 5%-
+F12
     brightnessctl set +5%
 
 # ======================
