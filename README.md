@@ -13,7 +13,7 @@ sudo pacman -S ttf-unifont
 sudo pacman -S adobe-source-han-sans-jp-fonts
 sudo pacman -S noto-fonts-emoji
 
-# Install from AUR using yay (if you have an AUR helper)
+# USING YAY
 
 yay -S ttf-iosevka-custom
 yay -S ttf-iosevka-nerd
@@ -22,7 +22,7 @@ yay -S ttf-iosevka-nerd
 
 
 
-# YAY
+# INSTALL YAY
 .
 git clone https://aur.archlinux.org/yay.git &&
 cd ~/yay &&
