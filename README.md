@@ -75,7 +75,6 @@ systemctl --user enable --now pipewire pipewire-pulse wireplumber
 
 # SCREENSHOT
 
-![Description of the screenshot](review4.gif)
 ![Description of the screenshot](reviews1.png)
 
 # MOCHA-THEME
