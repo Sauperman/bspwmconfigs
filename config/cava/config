@@ -1,19 +1,20 @@
 [color]
+# You can keep the Catppuccin Mocha Base for a dark terminal
+background = '#1e1e2e'
+
+# Enable gradient mode
 gradient = 1
-gradient_count = 3
-gradient_color_1 = '#0a3439'  # Dark teal
-gradient_color_2 = '#1a6d6f'  # Medium teal
-gradient_color_3 = '#5fc2c7'  # Bright teal
 
-[input]
-method = pulse
-source = auto
+# Define the number of gradient colors to use
+gradient_count = 8
 
-[output]
-method = ncurses
-framerate = 60
-autosens = 1
-
-[smoothing]
-integral = 70
-gravity = 85
+# Ocean Sunset Gradient (from bottom to top)
+# Using deep blue -> purple -> magenta -> pink -> orange -> gold
+gradient_color_1 = '#1D2671'  # Deep Ocean Blue (Bottom)
+gradient_color_2 = '#614385'  # Royal Purple
+gradient_color_3 = '#AA3992'  # Violet Magenta
+gradient_color_4 = '#D4145A'  # Bright Raspberry
+gradient_color_5 = '#FF512F'  # Deep Coral
+gradient_color_6 = '#FBB03B'  # Rich Orange
+gradient_color_7 = '#FFD700'  # Gold Yellow
+gradient_color_8 = '#FFEA00'  # Brightest Neon Yellow (Top)
