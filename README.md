@@ -1,7 +1,7 @@
 # ARCH-LINUX-BSPWM-MINIMAL-DESKTOP
 
 # DEPENDENCIES 
-.
+
 sudo pacman -S bspwm polybar xterm picom rofi kitty scrot nm-connection-editor brightnessctl pamixer ffmpeg xorg-server xorg-xinit xorg-xrandr xf86-video-intel xorg-server xorg-apps xorg-xinit xorg-xkill xorg-xset xorg-xrandr xorg-xrdb xorg-xprop libqalculate intel-gpu-tools ffmpeg mpv xf86-video-fbdev xorg-xbacklight dmenu breeze-icons git nano curl wget less rust net-tools htop gwenview spectacle mplayer ttf-hack-nerd ttf-firacode-nerd papirus-icon-theme bc power-profiles-daemon python-gobject python unzip unrar p7zip ufw ttc-iosevka adobe-source-han-sans-jp-fonts feh stalonetray ttf-font-awesome ttf-nerd-fonts-symbols-common ttf-nerd-fonts-symbols-mono ttf-dejavu ttf-liberation noto-fonts noto-fonts-emoji ufw gparted dolphin git nano curl wget less rust net-tools htop
 
 # FONTS THAT I USE IN POLYBAR
@@ -24,11 +24,11 @@ yay -S ttf-iosevka-nerd
 
 # YAY
 .
-git clone https://aur.archlinux.org/yay.git ~/yay
-cd ~/yay
+git clone https://aur.archlinux.org/yay.git &&
+cd ~/yay &&
 makepkg -si --noconfirm
 
-#YAY dependencies
+# YAY DEPENDENCIES
 .
 yay -S wlogout nm-applet ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono xwinwrap-git noto-fonts-emoji otf-ipafont ttf-jetbrains-mono nerd-fonts-iosevka ttf-siji adobe-source-han-sans-jp-fonts
 .
@@ -36,8 +36,8 @@ yay -S wlogout nm-applet ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono xwin
 
 # AFTER
 
-sudo chmod +x ~/.config/rofi/wifi.sh
-sudo chmod +x .config/bspwm/bspwmrc
+sudo chmod +x ~/.config/rofi/wifi.sh &&
+sudo chmod +x .config/bspwm/bspwmrc &&
 sudo chmod +x .config/sxhkd/sxhkdrc
 .
 win + t = terminal
@@ -68,7 +68,8 @@ pacman -S chromium git steam gamemode mangohud wine-staging gamemode gamescope
 sudo pacman -S pipewire pipewire-pulse pipewire-alsa wireplumber
 systemctl --user enable --now pipewire pipewire-pulse wireplumber
 
-######-AFTER START UP ON AFK IT USES AROUND 345 MB to 312 MB RAM/MEMORY-############
+# THIS IS THE MOST LIGHT WEIGHT YOU CAN USE PICOM FOR HYPRLAND LIKE EXPERIENCE
+
 # REMOVE # FROM #.Xresources #.bashrc
 
 
