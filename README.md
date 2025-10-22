@@ -30,7 +30,7 @@ makepkg -si --noconfirm
 
 # YAY DEPENDENCIES
 .
-yay -S wlogout nm-applet ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono xwinwrap-git noto-fonts-emoji otf-ipafont ttf-jetbrains-mono nerd-fonts-iosevka ttf-siji adobe-source-han-sans-jp-fonts wallset
+yay -S wlogout nm-applet ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono xwinwrap-git noto-fonts-emoji otf-ipafont ttf-jetbrains-mono nerd-fonts-iosevka ttf-siji adobe-source-han-sans-jp-fonts
 .
 
 
