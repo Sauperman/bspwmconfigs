@@ -1,35 +1,10 @@
-#download yay -S xwinwrap-git
-
-
-
 #gif
 xwinwrap -g 1920x1080 -ni -un -ov -fs -- mpv --loop --no-audio --wid=%WID% ~/.config/hypr/wall.gif &
-
-#video
-
-xwinwrap -fs -nf -ov -- mpv -wid WID --loop --no-audio --no-osc --no-osd-bar Videos/LIVEWALLPAPER/wall.mp4
-
-xwinwrap -g 1920x1080+0+0 -ni -s -st -sp -b -nf -ov -- mpv -wid WID --loop --no-audio --hwdec=no --vo=x11 --framedrop=vo --no-border --ontop --no-keepaspect ~/Videos/LIVEWALLPAPER/wall.mp4
-
-#BEST OF ALL CMD
-xwinwrap -g 1920x1080+0+0 -ni -s -st -sp -b -nf -ov -- mpv -wid WID --loop --no-audio --hwdec=auto --vo=gpu --scale=bilinear --cscale=bilinear --dscale=bilinear --framedrop=vo --video-latency-hacks=yes --no-border --ontop ~/Videos/LIVEWALLPAPER/wall.mp4
-
-killall xwinwrap mpv 2>/dev/null
 
 #================#
 # BEST OPTION    #
 #================#
 
-# Try mplayer with xwinwrap
-xwinwrap -g 1920x1080+0+0 -ni -s -st -sp -b -nf -ov -- mplayer -quiet -loop 0 -nosound -framedrop -vo xv -wid WID ~/Videos/LIVEWALLPAPER/wall.mp4
+# LIVE VIDEO
 
-xwinwrap -g 1920x1080+0+0 -ni -s -st -sp -b -nf -ov -- mplayer -quiet -loop 0 -nosound -framedrop -vo xv -wid WID ~/Videos/LIVEWALLPAPER/wall.mp4
-
-xwinwrap -g 1920x1080+0+0 -ni -s -st -sp -b -nf -ov -- mplayer -quiet -loop 0 -nosound -framedrop -vo xv -wid %WID ~/Videos/LIVEWALLPAPER/lemon.mp4
-
-#===================#
-#  Smooth           #
-#===================#
-
-xwinwrap -debug -g 1920x1080+0+0 -ni -s -st -sp -b -nf -ov -- mplayer -quiet -loop 0 -nosound -framedrop -vo xv  wid %WID ~/Videos/LIVEWALLPAPER/miku.mp4
-mpv --no-audio --loop-file=inf --no-osd-bar --no-input-default-bindings --wid=0 ~/Videos/live_wallpaper.mp4 &
+xwinwrap -g 1920x1080+0+0 -ni -s -st -sp -b -nf -ov -- mplayer -fixed-vo -quiet -loop 0 -nosound -vo xv -wid %WID ~/Videos/LIVEWALLPAPER/1.mp4
