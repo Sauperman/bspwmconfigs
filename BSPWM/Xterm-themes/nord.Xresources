@@ -1,0 +1,54 @@
+xterm*faceName: FiraCode Nerd Font Mono
+xterm*faceSize: 15
+xterm*renderFont: true
+xterm*utf8: 2
+xterm*locale: true
+
+! Enable font size adjustment and copy/paste
+XTerm*vt100.translations: #override \
+    Ctrl Shift <Key>equal: larger-vt-font() \n\
+    Ctrl Shift <Key>plus: larger-vt-font() \n\
+    Ctrl Shift <Key>minus: smaller-vt-font() \n\
+    Ctrl Shift <Key>underscore: smaller-vt-font() \n\
+    Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
+
+! --- Nord Theme ---
+
+! Background (Polar Night Darkest)
+XTerm*background: #2E3440
+
+! Foreground (Snow Storm Lightest)
+XTerm*foreground: #E5E9F0
+
+! Black (Polar Night variants)
+XTerm*color0: #3B4252    ! Polar Night Darker
+XTerm*color8: #4C566A    ! Polar Night Dark
+
+! Red (Aurora Red)
+XTerm*color1: #BF616A
+XTerm*color9: #D08770    ! Aurora Orange (bright variant)
+
+! Green (Aurora Green)
+XTerm*color2: #A3BE8C
+XTerm*color10: #B5D8A3   ! Light Green
+
+! Yellow (Aurora Yellow)
+XTerm*color3: #EBCB8B
+XTerm*color11: #F0D399   ! Light Yellow
+
+! Blue (Frost Blue)
+XTerm*color4: #5E81AC
+XTerm*color12: #81A1C1   ! Frost Light Blue
+
+! Magenta (Aurora Purple)
+XTerm*color5: #B48EAD
+XTerm*color13: #C895B5   ! Light Magenta
+
+! Cyan (Frost Cyan)
+XTerm*color6: #88C0D0
+XTerm*color14: #8FBCBB   ! Frost Muted Cyan
+
+! White (Snow Storm variants)
+XTerm*color7: #D8DEE9    ! Snow Storm Lighter
+XTerm*color15: #ECEFF4   ! Snow Storm Lightest
