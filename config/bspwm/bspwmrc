@@ -14,12 +14,12 @@ bspc config gapless_monocle      true
 # Cursor mouse fix.
 # xsetroot -cursor_name left_ptr &
 
-bspc config borderless_monocle   true
-bspc config gapless_monocle      true
-bspc config focus_follows_pointer true
-bspc config pointer_follows_focus true
-bspc config gapless_monocle true
-bspc config paddingless_monocle true
+# bspc config borderless_monocle   true
+# bspc config gapless_monocle      true
+# bspc config focus_follows_pointer true
+# bspc config pointer_follows_focus true
+# bspc config gapless_monocle true
+# bspc config paddingless_monocle true
 
 bspc rule -a konsole state=floating
 
