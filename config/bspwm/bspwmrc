@@ -12,7 +12,7 @@ bspc config gapless_monocle      true
 
 
 # Cursor mouse fix.
-xsetroot -cursor_name left_ptr &
+# xsetroot -cursor_name left_ptr &
 
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
