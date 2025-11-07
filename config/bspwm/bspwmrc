@@ -29,5 +29,4 @@ bspc config top_padding 1
 bspc config bottom_padding 29
 bspc config font "FiraCode Nerd Font Mono:size=7:style=Regular"
 
-sxhkd &
 polybar &
