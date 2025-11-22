@@ -2,21 +2,15 @@
 
 # DEPENDENCIES 
 
-sudo pacman -S bspwm polybar xterm picom rofi kitty scrot nm-connection-editor brightnessctl pamixer ffmpeg xorg-server xorg-xinit xorg-xrandr xf86-video-intel xorg-server xorg-apps xorg-xinit xorg-xkill xorg-xset xorg-xrandr xorg-xrdb xorg-xprop libqalculate intel-gpu-tools ffmpeg mpv xf86-video-fbdev xorg-xbacklight dmenu breeze-icons git nano curl wget less rust net-tools htop gwenview spectacle mplayer ttf-hack-nerd ttf-firacode-nerd papirus-icon-theme bc power-profiles-daemon python-gobject python unzip unrar p7zip ufw ttc-iosevka adobe-source-han-sans-jp-fonts feh stalonetray ttf-font-awesome ttf-nerd-fonts-symbols-common ttf-nerd-fonts-symbols-mono ttf-dejavu ttf-liberation noto-fonts noto-fonts-emoji ufw gparted dolphin git nano curl wget less rust net-tools htop
+sudo pacman -S bspwm sxhkd polybar xterm picom rofi kitty scrot nm-connection-editor brightnessctl pamixer ffmpeg xorg-server xorg-xinit xorg-xrandr xf86-video-intel xorg-server xorg-apps xorg-xinit xorg-xkill xorg-xset xorg-xrandr xorg-xrdb xorg-xprop libqalculate intel-gpu-tools ffmpeg mpv xf86-video-fbdev xorg-xbacklight dmenu breeze-icons git nano curl wget less rust net-tools htop gwenview spectacle mplayer ttf-hack-nerd ttf-firacode-nerd papirus-icon-theme bc power-profiles-daemon python-gobject python unzip unrar p7zip ufw ttc-iosevka adobe-source-han-sans-jp-fonts feh stalonetray ttf-font-awesome ttf-nerd-fonts-symbols-common ttf-nerd-fonts-symbols-mono ttf-dejavu ttf-liberation noto-fonts noto-fonts-emoji ufw gparted dolphin git nano curl wget less rust net-tools htop
 
 # FONTS THAT I USE IN POLYBAR
 
-sudo pacman -S ttf-iosevka
-sudo pacman -S ttf-font-awesome
-sudo pacman -S ttf-siji
-sudo pacman -S ttf-unifont
-sudo pacman -S adobe-source-han-sans-jp-fonts
-sudo pacman -S noto-fonts-emoji
+sudo pacman -S ttf-iosevka ttf-font-awesome ttf-siji ttf-unifont adobe-source-han-sans-jp-fonts noto-fonts-emoji
 
 # USING YAY
 
-yay -S ttf-iosevka-custom
-yay -S ttf-iosevka-nerd
+yay -S ttf-iosevka-custom ttf-iosevka-nerd ttf-siji ttf-unifont
 
 
 
@@ -25,8 +19,7 @@ yay -S ttf-iosevka-nerd
 # INSTALL YAY
 .
 git clone https://aur.archlinux.org/yay.git &&
-cd ~/yay &&
-makepkg -si --noconfirm
+cd ~/yay && makepkg -si --noconfirm
 
 # YAY DEPENDENCIES
 .
@@ -65,8 +58,7 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 pacman -S chromium git steam gamemode mangohud wine-staging gamemode gamescope
 
 #pipewire audio
-sudo pacman -S pipewire pipewire-pulse pipewire-alsa wireplumber
-systemctl --user enable --now pipewire pipewire-pulse wireplumber
+sudo pacman -S pipewire pipewire-pulse pipewire-alsa wireplumber && systemctl --user enable --now pipewire pipewire-pulse wireplumber
 
 # THIS IS THE MOST LIGHT WEIGHT YOU CAN USE PICOM FOR HYPRLAND LIKE EXPERIENCE
 
