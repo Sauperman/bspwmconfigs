@@ -29,4 +29,9 @@ bspc config top_padding 1
 bspc config bottom_padding 29
 bspc config font "FiraCode Nerd Font Mono:size=7:style=Regular"
 
+
+xrandr --output $(xrandr | grep " connected" | cut -f1 -d " ") --gamma 0.8:0.8:0.8 --brightness 0.9
+
+xrandr --output $(xrandr | grep " connected" | cut -f1 -d " ") --set "CTM" "1431655765,0,0,0,1431655765,0,0,0,1431655765"
+
 polybar &
