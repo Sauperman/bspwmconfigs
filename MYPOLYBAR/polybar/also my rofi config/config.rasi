@@ -1,190 +1,196 @@
-@theme "default"
-
 configuration {
-	modi: "drun,window,run";
-	width: 40%;
+	modi: "drun,calc:qalc,window,run";
+	width: 35%;
 	show-icons: true;
-	icon-theme: "breeze";
-	lines: 8;
+	icon-theme: "papirus";
+	lines: 10; /* CHANGED: Now showing 10 lines */
 	fixed-num-lines: true;
-	padding: 3;
-	sidebar-mode: false;
-    font: "FiraCode Nerd Font 9";
-    columns: 1;
+	padding: 2;
+	sidebar-mode: true;
+	font: "FiraCode Nerd Font 9";
+	columns: 1;
+	drun-display-format: "{name}";
+	drun-match-fields: "name,generic,exec";
 }
 
+// Black and Grey Theme
 * {
-    // Base colors - matching polybar colors
-    bg: #0f1419;
-    bg-alt: #1f2a36;
-    fg: #d8dee9;
-    fg-alt: #7c8a9c;
+	// --- Backgrounds ---
+	bg: #000000;        // Pure Black (Primary Background)
+	bg-alt: #1A1A1A;    // Dark Grey (Alternate/Input Background)
 
-    // UI colors - using polybar color scheme
-    accent: #7c8a9c;
-    urgent: #bf616a;
-    active: #88c0d0;
+	// --- Foreground/Text ---
+	fg: #E0E0E0;        // Light Grey (Primary Text)
+	fg-alt: #A0A0A0;    // Medium Grey (Secondary/Placeholder Text)
 
-    background-color: transparent;
-    border-color: #4b5664;
-    separatorcolor: #65737e;
-    spacing: 1;
+	// --- UI Colors (Muted Accents)
+	accent: #404040;    // Dark Grey (Primary Accent/Selection Highlight)
+	urgent: #666666;    // Medium Grey (Urgent items)
+	active: #808080;    // Grey (Active items)
+
+	background-color: transparent;
+	border-color: #333333;
+	separatorcolor: @border-color;
+	spacing: 0;
 }
 
 window {
-    background-color: @bg;
-    border: 1;
-    border-color: @border-color;
-    border-radius: 4;
-    padding: 3;
-    // Left side positioning without extra margins
-    horizontal-align: 0;
-    vertical-align: 0;
-    margin: 0;
-    width: 350px;
-    height: 400px;
+	background-color: @bg;
+	border: 0;
+	border-radius: 10;
+	padding: 10;
+	horizontal-align: 0.5;
+	vertical-align: 0.5;
+	margin: 0;
+	width: 320px;
+	height: 420px; /* Adjusted height to better fit 10 lines */
 }
 
 mainbox {
-    spacing: 0;
-    background-color: @bg;
+	spacing: 0;
+	background-color: @bg;
 }
 
 inputbar {
-    spacing: 2;
-    padding: 3;
-    border: 0 0 1 0;
-    border-color: @separatorcolor;
-    children: [prompt, entry, case-indicator];
-    background-color: @bg;
+	spacing: 6;
+	padding: 8;
+	border: 1px;
+	border-radius: 8;
+	border-color: @bg-alt;
+	children: [prompt, entry, case-indicator];
+	background-color: @bg-alt;
 }
 
 prompt {
-    text-color: @accent;
-    padding: 0 3 0 0;
-    font: "bold 10px";
-    background-color: @bg;
+	text-color: @fg;
+	font: "bold 11px";
+	background-color: @bg-alt;
 }
 
 entry {
-    text-color: @fg;
-    background-color: @bg;
-    border-radius: 2;
-    padding: 3;
-    border: 1;
-    border-color: @border-color;
-    font: "9px";
+	text-color: @fg;
+	background-color: @bg-alt;
+	border-radius: 3;
+	padding: 0 0 0 0;
+	font: "9px";
 }
 
 case-indicator {
-    text-color: @fg-alt;
-    padding: 0 0 0 3;
-    font: "9px";
-    background-color: @bg;
+	text-color: @fg-alt;
+	font: "9px";
+	background-color: @bg-alt;
 }
 
 listview {
-    spacing: 1;
-    padding: 2;
-    scrollbar: true;
-    dynamic: true;
-    columns: 1;
-    background-color: @bg;
+	spacing: 4;
+	padding: 10 0 0 0;
+	scrollbar: true;
+	columns: 1;
+	background-color: @bg;
 }
 
 element {
-    padding: 3;
-    border-radius: 2;
-    text-color: @fg;
-    background-color: @bg;
-    font: "9px";
+	padding: 6;
+	border-radius: 5;
+	text-color: @fg;
+	background-color: @bg;
+	font: "9px";
 }
 
-element normal.normal {
-    background-color: @bg;
-    text-color: @fg;
+element normal normal {
+	background-color: @bg;
+	text-color: @fg;
 }
 
-element selected.normal {
-    background-color: @accent;
-    text-color: #000000;
+element alternate normal {
+	background-color: @bg;
+	text-color: @fg;
 }
 
-element alternate.normal {
-    background-color: @bg;
-    text-color: @fg-alt;
+element normal active {
+	background-color: @bg-alt;
+	text-color: @fg;
 }
 
-element active.normal {
-    background-color: @bg;
-    text-color: @fg;
+element selected normal {
+	background-color: @accent;
+	text-color: #FFFFFF; /* White text for better contrast on dark grey */
+	font: "FiraCode Nerd Font Bold 9";
 }
 
-element selected.active {
-    background-color: @active;
-    text-color: #000000;
+element active normal {
+	background-color: @bg;
+	text-color: @active;
 }
 
-element urgent.normal {
-    background-color: @bg;
-    text-color: @urgent;
+element selected active {
+	background-color: @active;
+	text-color: #FFFFFF; /* White text for better contrast */
 }
 
-element selected.urgent {
-    background-color: @urgent;
-    text-color: #000000;
+element urgent normal {
+	background-color: @bg;
+	text-color: @urgent;
+}
+
+element selected urgent {
+	background-color: @urgent;
+	text-color: #FFFFFF; /* White text for better contrast */
 }
 
 scrollbar {
-    handle-width: 2;
-    handle-color: @accent;
+	handle-width: 3;
+	handle-color: @fg-alt;
+	padding: 0;
+	border-radius: 5;
 }
 
 mode-switcher {
-    spacing: 2;
-    padding: 3;
-    border: 1 0 0 0;
-    border-color: @separatorcolor;
-    background-color: @bg;
+	spacing: 4;
+	padding: 8 0 0 0;
+	border: 1 0 0 0;
+	border-color: @separatorcolor;
+	background-color: @bg;
 }
 
 button {
-    padding: 2 4;
-    border-radius: 2;
-    text-color: @fg-alt;
-    font: "9px";
-    background-color: @bg;
+	padding: 5 8;
+	border-radius: 4;
+	text-color: @fg-alt;
+	font: "9px";
+	background-color: @bg;
 }
 
 button normal {
-    background-color: @bg;
+	background-color: @bg;
 }
 
 button selected {
-    background-color: @accent;
-    text-color: #000000;
+	background-color: @accent;
+	text-color: #FFFFFF; /* White text for better contrast */
+	font: "bold 9px";
 }
 
 textbox {
-    text-color: @fg;
-    font: "9px";
-    background-color: @bg;
+	text-color: @fg;
+	font: "9px";
+	background-color: @bg;
 }
 
 message {
-    text-color: @fg;
-    padding: 3;
-    border: 0 0 1 0;
-    border-color: @separatorcolor;
-    font: "9px";
-    background-color: @bg;
+	text-color: @fg;
+	padding: 4 0 0 0;
+	border: 1 0 0 0;
+	border-color: @separatorcolor;
+	font: "9px";
+	background-color: @bg;
 }
 
 // Icon styling
-element-icon {
-    size: 1.0em;
+element icon {
+	size: 1.1em;
 }
 
 element selected icon {
-    size: 1.0em;
+	size: 1.1em;
 }
