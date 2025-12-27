@@ -82,10 +82,5 @@
             "key": "󰍛 ",
             "keyColor": "34"
         },
-                {
-            "type": "monitor",
-            "key": " ",
-            "keyColor": "34",
-        },
         ]
 }
